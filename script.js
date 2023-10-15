@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
         outputDueDate.textContent = `Due date: ${selectedDueDate}`;
         outputExpectedChildren.textContent = `Expected Children: ${selectedExpectedChildren}`;
         outputLeavePayPercentage.textContent = `Leave pay percentage: ${selectedLeavePayPercentage}`;
-        outputPermStart.textContent = `Permisjonen starter: ${calculatedPermStart}`;
-        outputPermEnd.textContent = `Permisjonen slutter: ${calculatedPermEnd}`;
+        outputPermStart.textContent = `Permisjonen starter: ${calculatedPermStart.toLocaleDateString()}`;
+        outputPermEnd.textContent = `Permisjonen slutter: ${calculatedPermEnd.toLocaleDateString()}`;
 
         resultSection.classList.remove('hidden');
     });
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function calculateTotalPermStart(inputDate) {
     const calculatedStartDate = new Date(inputDate);
     calculatedStartDate.setDate(calculatedStartDate.getDate() - 21); // Subtract 3 weeks (3 * 7 days)
-    return calculatedStartDate.toLocaleDateString()
+    return calculatedStartDate
 }
 
 function calculateTotalPermEnd(startDate, expectedChildren, leavePayPercentage) {
@@ -61,5 +61,5 @@ function calculateTotalPermEnd(startDate, expectedChildren, leavePayPercentage) 
 
     const calculatedPermEnd = new Date(startDate);
     calculatedPermEnd.setDate(calculatedPermEnd.getDate() + totalWeeksOfLeave * 7)
-    return calculatedPermEnd.toLocaleDateString();
+    return calculatedPermEnd;
 }
