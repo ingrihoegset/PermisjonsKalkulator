@@ -7,78 +7,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="content">
-        <h1 class="title">Permisjonskalkulator</h1>
-        <div class="container">
-            <form id="questionnaire">
-                <div class="question">
-                    <label for="due-date">Oppgi dato for termin</label>
-                    <br />
-                    <input type="date" id="dueDate" required>
-                </div>
-                <div class="question">
-                    <label for="expected-children">Hvor mange barn venter du?</label>
-                    <br />
-                    <select id="expectedChildren" required>
-                        <option value="1">Ett barn</option>
-                        <option value="2">Tvillinger</option>
-                        <option value="3">Trillinger eller flere</option>
-                    </select>
-                </div>
-                <div class="question">
-                    <label for="leave-pay-percentage">Planlegger dere 100 % eller 80 % foreldrepenger?</label>
-                    <br />
-                    <select id="leavePayPercentage" required>
-                        <option value="100%">100%</option>
-                        <option value="80%">80%</option>
-                    </select>
-                </div>
-                <div class="question">
-                    <label for="common-periode-mother">Hvor mange uker av fellesperioden skal gå til mor?</label>
-                    <br />
-                    <select id="commonPeriodeMother" required>
-                        <option value="felles0">0</option>
-                        <option value="felles1">1</option>
-                        <option value="felles2">2</option>
-                        <option value="felles3">3</option>
-                        <option value="felles4">4</option>
-                        <option value="felles5">5</option>
-                        <option value="felles6">6</option>
-                        <option value="felles7">7</option>
-                        <option value="felles8">8</option>
-                        <option value="felles9">9</option>
-                        <option value="felles10">10</option>
-                        <option value="felles11">11</option>
-                        <option value="felles12">12</option>
-                        <option value="felles13">13</option>
-                        <option value="felles14">14</option>
-                        <option value="felles15">15</option>
-                        <option value="felles16">16</option>
-                        <option value="fellesVetIkke">Vet ikke</option>
-                    </select>
-                </div>
-                <div class="question">
-                    <label for="vacation">Skal dere ta ut noe ferie i forbindelse med permisjonen?</label>
-                    <label for="vacation-mom">Antall ferieuker mor</label>
-                    <input type="number" id="vacationMomWeeks" min="0" max="52" required>
-                    <br />
-                    <input type="date" id="vacationMomDate" required>
-                    <br />
-                    <label for="vacation-dad">Antall ferieuker far / medmor</label>
-                    <br />
-                    <input type="number" id="vacationDadWeeks" min="0" max="52" required>
-                    <input type="date" id="vacationDadDate" required>
-                    <br />
-                    <label for="vacation-shared">Antall ferieuker felles</label>
-                    <input type="number" id="vacationSharedWeeks" min="0" max="52" required>
-                    <br />
-                    <input type="date" id="vacationSharedDate" required>
-                </div>
-                <div class="question">
-                    <label for="update-text">Permisjonen varer frem til:</label>
-                    <input type="text" id="update-text" readonly>
-                </div>
-            </form>
+    <div class="container">
+        <h1>Beregn lengden på din permisjon</h1>
+        <form id="questionForm">
+            <!-- Question Due Date -->
+            <label for="due-date">Oppgi dato for termin</label>
+            <input type="date" id="dueDate" required>
+            <!-- Question Number of Children Expected -->
+            <label for="expected-children">Hvor mange barn venter du?</label>
+            <select id="expectedChildren" required>
+                <option value="1">Ett barn</option>
+                <option value="2">Tvillinger</option>
+                <option value="3">Trillinger eller flere</option>
+            </select>
+            <!-- Question Leave Pay Percentage -->
+            <label for="leave-pay-percentage">Planlegger du 100 % eller 80 % foreldrepenger?</label>
+            <select id="leavePayPercentage" required>
+                <option value="100">100</option>
+                <option value="80">80</option>
+            </select>
+            <!-- Calculate -->
+            <button type="button" id="calculateButton">Calculate</button>
+        </form>
+        <div id="result" class="hidden">
+            <h2>Result:</h2>
+            <p id="dueDateResult"></p>
+            <p id="expectedChildrenResult"></p>
+            <p id="leavePayPercentageResult"></p>
+            <p id="permStartResult"></p>
+            <p id="permEndResult"></p>
         </div>
     </div>
     <script src="script.js"></script>
