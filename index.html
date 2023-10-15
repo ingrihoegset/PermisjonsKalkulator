@@ -26,14 +26,40 @@
                 <option value="100">100</option>
                 <option value="80">80</option>
             </select>
+            <!-- Question Foredeling av felleskvote -->
+            <label for="leave-pay-percentage">Hvor mange uker av felleskvote skal gå til mor?</label>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="16" value="8" class="slider" id="myRange">
+            </div>
+            <span id="sliderValue">8</span>
+            <!-- Question Vacation -->
+            <label for="vactaion">Planlegger dere å ta ut noe ferie i løpet av permisjonen?</label>
+            <div class="row">
+                <span class="row-label">Oppgi antall uker ferie til mor alene:</span>
+                <input type="number" id="vacationMother" class="row-input" min="1" step="1">
+            </div>
+            <div class="row">
+                <span class="row-label">Oppgi antall uker ferie til far/medmor alene:</span>
+                <input type="number" id="vacationFather" class="row-input" min="1" step="1">
+            </div>
+            <div class="row">
+                <span class="row-label">Oppgi antall uker ferie til foreldre skal ha sammen:</span>
+                <input type="number" id="vacationTogether" class="row-input" min="1" step="1">
+            </div>
             <!-- Calculate -->
-            <button type="button" id="calculateButton">Calculate</button>
+            <div>
+            <button type="button" id="calculateButton">Beregn permisjon</button>
+            </div>
         </form>
         <div id="result" class="hidden">
-            <h2>Result:</h2>
+            <h2>Resultat:</h2>
             <p id="dueDateResult"></p>
             <p id="expectedChildrenResult"></p>
             <p id="leavePayPercentageResult"></p>
+            <p id="weeksVacationMother"></p>
+            <p id="weeksVacationFather"></p>
+            <p id="weeksVacationTogether"></p>
+            <p id="totalWeeksOfVacation"></p>
             <p id="permStartResult"></p>
             <p id="permEndResult"></p>
         </div>
