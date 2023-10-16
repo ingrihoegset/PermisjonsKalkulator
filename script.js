@@ -144,18 +144,6 @@ function calculatePermStartFar(permEndMor) {
 }
 
 
-// Slider indicator
-const slider = document.getElementById('felleskvoteUkerMor');
-const output = document.getElementById('sliderValue');
-
-output.innerHTML = slider.value; // Display the default value
-
-slider.addEventListener('input', function() {
-    output.innerHTML = this.value;
-});
-
-
-
 
 
 /*    calculateButton.addEventListener('click', function () {
