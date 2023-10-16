@@ -23,6 +23,7 @@ body {
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 35px;
+    margin-top: 20px;
 }
 
 h1 {
@@ -57,6 +58,16 @@ select {
     font-family: "Arial", sans-serif;
     box-sizing: border-box;
     vertical-align: middle;
+    opacity: 0.75;
+}
+
+/* Mouse-over effects */
+input[type="text"]:hover,
+input[type="date"]:hover,
+input[type="number"]:hover,
+select:hover,
+.radio-container:hover {
+    opacity: 1;
 }
 
 button {
@@ -116,7 +127,7 @@ button:hover {
     appearance: none;
     width: 100%;
     height: 40px;
-    background: #dce3df;
+    background: #efefef70;
     outline: none;
     opacity: 0.7;
     -webkit-transition: 0.2s;
@@ -153,7 +164,7 @@ button:hover {
     padding: 10px;
     border-radius: 0px;
     background-color:#efefef70;
-
+    opacity: 0.75;
 }
 
 /* Radio Labels */

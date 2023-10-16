@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Beregn lengden på din permisjon</h1>
         <div class="section">
-            <label for="leave-pay-percentage">Hvem har rett til foreldrepenger?</label>
+            <label for="parental-leave-rights">Hvem har rett til foreldrepenger?</label>
             <div class="radio-container">
                 <label>
                     <input type="radio" name="radioOption" value="1"> Både mor og far/medmor har rett til foreldrepenger
@@ -52,16 +52,17 @@
                 </select>
             </form>      
         </div>
-        <form id="sliderForm">
+        <div class="section">
             <!-- Question Foredeling av felleskvote -->
             <label for="felleskvote-andel">Hvor mange uker av felleskvote skal gå til mor?</label>
             <div class="slidecontainer">
                 <input type="range" min="0" max="16" value="8" class="slider" id="felleskvoteUkerMor">
             </div>
             <span id="sliderValue">8</span>
-        </form>
+        </div>
+        <!-- Question Vacation 
         <form id="vacationForm">
-            <!-- Question Vacation -->
+
             <label for="vactaion">Planlegger dere å ta ut noe ferie i løpet av permisjonen?</label>
             <div class="row">
                 <span class="row-label">Oppgi antall uker ferie til mor alene:</span>
@@ -88,6 +89,7 @@
                 <input type="date" id="vacationTogetherDate" class="row-input" min="1" step="1">
             </div>
         </form>
+        -->
         <!-- Calculate -->
         <div>
         <button type="button" id="calculateButton">Beregn permisjon</button>
