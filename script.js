@@ -23,10 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     calculateButton.addEventListener('click', function () {
 
-        console.log('Button clicked!'); // Check if the button click event is firing.
+        console.log('Button clicked!'); 
         const selectedRettTilForeldrepenger = getSelectedRettTilForeldrepenger();
-        console.log('Selected value: ' + selectedRettTilForeldrepenger); // Check the selected value
-        // ...
+        console.log('Selected value: ' + selectedRettTilForeldrepenger); 
 
         resultSection.classList.remove('hidden');
     });
@@ -62,11 +61,9 @@ function getSelectedRettTilForeldrepenger() {
     const selectedRadio = document.querySelector('input[type="radio"][name="radioOption"]:checked');
     // Check if a radio button is selected
     if (selectedRadio) {
-        const selectedValue = selectedRadio.value;
-        prompt('Selected Value: ' + selectedValue);
-        return selectedValue
+        return selectedValue = selectedRadio.value;
     } else {
-        prompt('No radio button is selected.');
+        prompt('Obs! Du må oppgi hvem som har rett til foreldrepenger før du går videre');
     }
 }
 
