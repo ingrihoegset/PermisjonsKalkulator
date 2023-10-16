@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const questionForm = document.getElementById('questionForm');
     const resultSection = document.getElementById('result');
+    const calculateButton = document.getElementById('calculateButton');
+
+    const outputRettTilForeldrePenger = document.querySelector('input[type="radio"][name="radioOption"]:checked');
     const outputDueDate = document.getElementById('dueDateResult');
     const outputExpectedChildren = document.getElementById('expectedChildrenResult');
     const outputLeavePayPercentage = document.getElementById('leavePayPercentageResult');
@@ -8,38 +10,55 @@ document.addEventListener('DOMContentLoaded', function () {
     const outputWeeksVacationFather = document.getElementById('weeksVacationFather');
     const outputWeeksVacationTogether = document.getElementById('weeksVacationTogether');
     const outputTotalWeeksOfVacation = document.getElementById('totalWeeksOfVacation');
+    const outputFellesKvoteTilMor = document.getElementById('felleskvoteMor');
+
+    // Main results
     const outputPermStart = document.getElementById('permStartResult');
     const outputPermEnd = document.getElementById('permEndResult');
-    const calculateButton = document.getElementById('calculateButton');
+    const outputPermMorStart = document.getElementById('morsPermStartResult');
+    const outputPermMorSlutt = document.getElementById('morsPermEndResult');
+    const outputPermFarStart = document.getElementById('farsPermStartResult');
+    const outputPermFarSlutt = document.getElementById('farsPermEndResult');
+
 
     calculateButton.addEventListener('click', function () {
-        const selectedDueDate = document.getElementById('dueDate').value;
-        const selectedExpectedChildren = parseInt(document.getElementById('expectedChildren').value);
-        const selectedLeavePayPercentage = parseInt(document.getElementById('leavePayPercentage').value);
-        const selctedVacationMother = parseInt(document.getElementById('vacationMother').value);
-        const selctedVacationFather = parseInt(document.getElementById('vacationFather').value);
-        const selctedVacationTogether = parseInt(document.getElementById('vacationTogether').value);
-        const calculatedPermStart = calculateTotalPermStart(selectedDueDate);
-        const calculatedVacationWeeks = calculateVacationWeeks(selctedVacationMother, selctedVacationFather, selctedVacationTogether)
-        const calculatedPermEnd = calculateTotalPermEnd(calculatedPermStart, selectedExpectedChildren, selectedLeavePayPercentage, calculatedVacationWeeks);
-
-        outputDueDate.textContent = `Termin: ${selectedDueDate}`;
-        outputExpectedChildren.textContent = `Antall barn: ${selectedExpectedChildren}`;
-        outputLeavePayPercentage.textContent = `Andel foreldrepenger: ${selectedLeavePayPercentage}`;
-        outputWeeksVacationMother.textContent = `Ferie bare mor: ${selctedVacationMother}`;
-        outputWeeksVacationFather.textContent = `Ferie bare far / medmor: ${selctedVacationFather}`;
-        outputWeeksVacationTogether.textContent =`Ferie sammen: ${selctedVacationTogether}`;
-        outputTotalWeeksOfVacation.textContent =`Totalt antall ferieuker: ${calculatedVacationWeeks}`;
-        outputPermStart.textContent = `Permisjonen starter: ${calculatedPermStart.toLocaleDateString()}`;
-        outputPermEnd.textContent = `Permisjonen slutter: ${calculatedPermEnd.toLocaleDateString()}`;
+        getSelectedRettTilForeldrepenger()
 
         resultSection.classList.remove('hidden');
     });
 
+    // Add a click event listener to each radio button
+    const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
 
+    radioButtons.forEach((radioButton) => {
+        radioButton.addEventListener('click', () => {
+            // Uncheck all other radio buttons with the same name
+            radioButtons.forEach((otherRadioButton) => {
+                if (otherRadioButton !== radioButton) {
+                    otherRadioButton.checked = false;
+                }
+            });
+        });
+    });
 });
 
+function getSelectedRettTilForeldrepenger() {
+    const selectedRadio = document.querySelector('input[type="radio"][name="radioOption"]:checked');
+    // Check if a radio button is selected
+    if (selectedRadio) {
+        const selectedValue = selectedRadio.value;
+        alert('Selected Value: ' + selectedValue);
+        return selectedValue
+    } else {
+        alert('No radio button is selected.');
+    }
+}
 
+function getDueDate(inputDate) {
+    const dueDate = new Date(inputDate);
+    dueDate.setDate(dueDate.getDate())
+    return dueDate;
+}
 
 function calculateTotalPermStart(inputDate) {
     const calculatedStartDate = new Date(inputDate);
@@ -78,9 +97,9 @@ function calculateTotalPermEnd(startDate, expectedChildren, leavePayPercentage, 
 
     //Check if vacation weeks is calculated
     if (!isNaN(weeksOfVacation)) {
-        totalWeeksOfVacation = weeksOfVacation
+        totalWeeksOfVacation = weeksOfVacation;
     } else {
-        totalWeeksOfVacation = 0
+        totalWeeksOfVacation = 0;
     }
 
     const calculatedPermEnd = new Date(startDate);
@@ -92,12 +111,30 @@ function calculateTotalPermEnd(startDate, expectedChildren, leavePayPercentage, 
 }
 
 function calculateVacationWeeks(vacationMother, vacationFather, vacationTogether) {
-    return vacationMother + vacationFather + vacationTogether
+    return vacationMother + vacationFather + vacationTogether;
+}
+
+function calculatePermEndMor(terminDato, fellesKvoteUkerMor) {
+    // Hent startdato for perm
+    const calculatedPermEndMor = new Date(terminDato);
+    // Legg til mammakvoten på 15 uker
+    calculatedPermEndMor.setDate(calculatedPermEndMor.getDate() + 15 * 7)
+    // Legg til mors andel av felleskvoten
+    calculatedPermEndMor.setDate(calculatedPermEndMor.getDate() + fellesKvoteUkerMor * 7)
+    return calculatedPermEndMor;
+}
+
+function calculatePermStartFar(permEndMor) {
+    // Hent startdato for perm
+    const calculatedPermStartFar = new Date(permEndMor);
+    // Legg til en dag
+    calculatedPermStartFar.setDate(calculatedPermStartFar.getDate() + 1)
+    return calculatedPermStartFar;
 }
 
 
 // Slider indicator
-const slider = document.getElementById('myRange');
+const slider = document.getElementById('felleskvoteUkerMor');
 const output = document.getElementById('sliderValue');
 
 output.innerHTML = slider.value; // Display the default value
@@ -106,3 +143,43 @@ slider.addEventListener('input', function() {
     output.innerHTML = this.value;
 });
 
+
+
+
+
+/*    calculateButton.addEventListener('click', function () {
+        const selectedRettTilForeldrepenger = getSelectedRettTilForeldrepenger();
+        const selectedDueDate = getDueDate(document.getElementById('dueDate').value);
+        const selectedExpectedChildren = parseInt(document.getElementById('expectedChildren').value);
+        const selectedLeavePayPercentage = parseInt(document.getElementById('leavePayPercentage').value);
+        const selctedVacationMother = parseInt(document.getElementById('vacationMother').value);
+        const selctedVacationFather = parseInt(document.getElementById('vacationFather').value);
+        const selctedVacationTogether = parseInt(document.getElementById('vacationTogether').value);
+        const selectedFellesKvoteMor = parseInt(document.getElementById('felleskvoteUkerMor').value);
+        const calculatedPermStart = calculateTotalPermStart(selectedDueDate);
+        const calculatedVacationWeeks = calculateVacationWeeks(selctedVacationMother, selctedVacationFather, selctedVacationTogether);
+        const calculatedPermEnd = calculateTotalPermEnd(calculatedPermStart, selectedExpectedChildren, selectedLeavePayPercentage, calculatedVacationWeeks);
+        const calculatedPermEndMor = calculatePermEndMor(selectedDueDate, selectedFellesKvoteMor);
+        const calculatedPermStartFar = calculatePermStartFar(calculatedPermEndMor);
+
+
+        outputRettTilForeldrePenger.textContent = `Rett til foreldrepenger: ${selectedRettTilForeldrepenger}`;
+        outputDueDate.textContent = `Termin: ${selectedDueDate.toLocaleDateString()}`;
+        outputExpectedChildren.textContent = `Antall barn: ${selectedExpectedChildren}`;
+        outputLeavePayPercentage.textContent = `Andel foreldrepenger: ${selectedLeavePayPercentage}`;
+        outputFellesKvoteTilMor.textContent =`Felleskvote uker til mor: ${selectedFellesKvoteMor}`;
+        outputWeeksVacationMother.textContent = `Ferie bare mor: ${selctedVacationMother}`;
+        outputWeeksVacationFather.textContent = `Ferie bare far / medmor: ${selctedVacationFather}`;
+        outputWeeksVacationTogether.textContent =`Ferie sammen: ${selctedVacationTogether}`;
+        outputTotalWeeksOfVacation.textContent =`Totalt antall ferieuker: ${calculatedVacationWeeks}`;
+        outputPermStart.textContent = `Permisjonen starter: ${calculatedPermStart.toLocaleDateString()}`;
+        outputPermEnd.textContent = `Permisjonen slutter: ${calculatedPermEnd.toLocaleDateString()}`;
+        outputPermMorStart.textContent = `Mors permisjon starter: ${calculatedPermStart.toLocaleDateString()}`;
+        outputPermMorSlutt.textContent = `Mors permisjon slutter: ${calculatedPermEndMor.toLocaleDateString()}`;
+        outputPermFarStart.textContent = `Fars/Medmors permisjon starter: ${calculatedPermStartFar.toLocaleDateString()}`;
+        outputPermFarSlutt.textContent = `Fars/Medmors permisjon slutter: ${calculatedPermEnd.toLocaleDateString()}`;
+
+        resultSection.classList.remove('hidden');
+    });
+    
+*/

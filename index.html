@@ -6,32 +6,61 @@
     <title>Permisjonskalkulator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    
     <div class="container">
         <h1>Beregn lengden på din permisjon</h1>
-        <form id="questionForm">
-            <!-- Question Due Date -->
-            <label for="due-date">Oppgi dato for termin</label>
-            <input type="date" id="dueDate" required>
-            <!-- Question Number of Children Expected -->
-            <label for="expected-children">Hvor mange barn venter du?</label>
-            <select id="expectedChildren" required>
-                <option value="1">Ett barn</option>
-                <option value="2">Tvillinger</option>
-                <option value="3">Trillinger eller flere</option>
-            </select>
-            <!-- Question Leave Pay Percentage -->
-            <label for="leave-pay-percentage">Planlegger du 100 % eller 80 % foreldrepenger?</label>
-            <select id="leavePayPercentage" required>
-                <option value="100">100</option>
-                <option value="80">80</option>
-            </select>
+        <div class="section">
+            <label for="leave-pay-percentage">Hvem har rett til foreldrepenger?</label>
+            <div class="radio-container">
+                <label>
+                    <input type="radio" name="radioOption" value="1"> Både mor og far/medmor har rett til foreldrepenger
+                </label>
+                <label>
+                    <input type="radio" name="radioOption" value="2"> Bare far eller medmor har rett til foreldrepenger, men har ikke aleneomsorg
+                </label>
+                <label>
+                    <input type="radio" name="radioOption" value="3"> Bare mor har rett til foreldrepenger, men har ikke aleneomsorg
+                </label>
+                <label>
+                    <input type="radio" name="radioOption" value="4"> Mor har aleneomsorg og rett til foreldrepenger
+                </label>
+                <label>
+                    <input type="radio" name="radioOption" value="5"> Far eller medmor har aleneomsorg og rett til foreldrepenger
+                </label>
+                <label>
+                    <input type="radio" name="radioOption" value="6"> Både far og far har rett til foreldrepenger
+                </label>
+            </div>
+            <form id="questionForm">
+                <!-- Question Due Date -->
+                <label for="due-date">Oppgi dato for termin</label>
+                <input type="date" id="dueDate" required>
+                <!-- Question Number of Children Expected -->
+                <label for="expected-children">Hvor mange barn venter du?</label>
+                <select id="expectedChildren" required>
+                    <option value="1">Ett barn</option>
+                    <option value="2">Tvillinger</option>
+                    <option value="3">Trillinger eller flere</option>
+                </select>
+                <!-- Question Leave Pay Percentage -->
+                <label for="leave-pay-percentage">Planlegger du 100 % eller 80 % foreldrepenger?</label>
+                <select id="leavePayPercentage" required>
+                    <option value="100">100 %</option>
+                    <option value="80">80 %</option>
+                </select>
+            </form>      
+        </div>
+        <form id="sliderForm">
             <!-- Question Foredeling av felleskvote -->
-            <label for="leave-pay-percentage">Hvor mange uker av felleskvote skal gå til mor?</label>
+            <label for="felleskvote-andel">Hvor mange uker av felleskvote skal gå til mor?</label>
             <div class="slidecontainer">
-                <input type="range" min="0" max="16" value="8" class="slider" id="myRange">
+                <input type="range" min="0" max="16" value="8" class="slider" id="felleskvoteUkerMor">
             </div>
             <span id="sliderValue">8</span>
+        </form>
+        <form id="vacationForm">
             <!-- Question Vacation -->
             <label for="vactaion">Planlegger dere å ta ut noe ferie i løpet av permisjonen?</label>
             <div class="row">
@@ -39,29 +68,46 @@
                 <input type="number" id="vacationMother" class="row-input" min="1" step="1">
             </div>
             <div class="row">
+                <span class="row-label">Når starter mors ferie?:</span>
+                <input type="date" id="vacationMotherDate" class="row-input" min="1" step="1">
+            </div>
+            <div class="row">
                 <span class="row-label">Oppgi antall uker ferie til far/medmor alene:</span>
                 <input type="number" id="vacationFather" class="row-input" min="1" step="1">
             </div>
             <div class="row">
-                <span class="row-label">Oppgi antall uker ferie til foreldre skal ha sammen:</span>
+                <span class="row-label">Når starter fars/medmors ferie?:</span>
+                <input type="date" id="vacationFatherDate" class="row-input" min="1" step="1">
+            </div>
+            <div class="row">
+                <span class="row-label">Oppgi antall uker ferie dere skal ha sammen:</span>
                 <input type="number" id="vacationTogether" class="row-input" min="1" step="1">
             </div>
-            <!-- Calculate -->
-            <div>
-            <button type="button" id="calculateButton">Beregn permisjon</button>
+            <div class="row">
+                <span class="row-label">Når starter ferien dere skal ha sammen?:</span>
+                <input type="date" id="vacationTogetherDate" class="row-input" min="1" step="1">
             </div>
         </form>
+        <!-- Calculate -->
+        <div>
+        <button type="button" id="calculateButton">Beregn permisjon</button>
+        </div>
         <div id="result" class="hidden">
             <h2>Resultat:</h2>
             <p id="dueDateResult"></p>
             <p id="expectedChildrenResult"></p>
             <p id="leavePayPercentageResult"></p>
+            <p id="felleskvoteMor"></p>
             <p id="weeksVacationMother"></p>
             <p id="weeksVacationFather"></p>
             <p id="weeksVacationTogether"></p>
             <p id="totalWeeksOfVacation"></p>
             <p id="permStartResult"></p>
             <p id="permEndResult"></p>
+            <p id="morsPermStartResult"></p>
+            <p id="morsPermEndResult"></p>
+            <p id="farsPermStartResult"></p>
+            <p id="farsPermEndResult"></p>
         </div>
     </div>
     <script src="script.js"></script>
