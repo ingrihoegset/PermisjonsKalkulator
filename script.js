@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     calculateButton.addEventListener('click', function () {
 
+        console.log('Button clicked!'); // Check if the button click event is firing.
+        const selectedRettTilForeldrepenger = getSelectedRettTilForeldrepenger();
+        console.log('Selected value: ' + selectedRettTilForeldrepenger); // Check the selected value
+        // ...
+
         resultSection.classList.remove('hidden');
     });
 
@@ -58,10 +63,10 @@ function getSelectedRettTilForeldrepenger() {
     // Check if a radio button is selected
     if (selectedRadio) {
         const selectedValue = selectedRadio.value;
-        alert('Selected Value: ' + selectedValue);
+        prompt('Selected Value: ' + selectedValue);
         return selectedValue
     } else {
-        alert('No radio button is selected.');
+        prompt('No radio button is selected.');
     }
 }
 
