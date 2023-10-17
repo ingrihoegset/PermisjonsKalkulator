@@ -11,7 +11,7 @@
     
     <div class="container">
         <h1>Beregn lengden på din permisjon</h1>
-        <div class="section">
+        <div class="section" id="section1">
             <label for="parental-leave-rights">Hvem har rett til foreldrepenger?</label>
             <div class="radio-container">
                 <label>
@@ -44,15 +44,25 @@
                     <option value="2">Tvillinger</option>
                     <option value="3">Trillinger eller flere</option>
                 </select>
-                <!-- Question Leave Pay Percentage -->
-                <label for="leave-pay-percentage">Planlegger du 100 % eller 80 % foreldrepenger?</label>
-                <select id="leavePayPercentage" required>
-                    <option value="100">100 %</option>
-                    <option value="80">80 %</option>
-                </select>
+                <!-- Gå videre fra første del knapp -->
+                <div>
+                    <button type="button" class= "gaaVidereKnapp" id="gaaVidereDel1">Neste</button>
+                </div>
             </form>      
         </div>
-        <div class="section">
+        <div class="section" id="section2">
+            <!-- Question Leave Pay Percentage -->
+            <label for="leave-pay-percentage">Planlegger du 100 % eller 80 % foreldrepenger?</label>
+            <select id="leavePayPercentage" required>
+                <option value="100">100 %</option>
+                <option value="80">80 %</option>
+            </select>
+            <!-- Gå videre fra andre del knapp -->
+            <div>
+                <button type="button" class= "gaaVidereKnapp" id="gaaVidereDel2">Neste</button>
+            </div>
+        </div>
+        <div class="section" id="section3">
             <!-- Question Foredeling av felleskvote -->
             <label for="felleskvote-andel">Hvor mange uker av felleskvote skal gå til mor?</label>
             <div class="slidecontainer">
