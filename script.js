@@ -24,26 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    //Oppgi dagens dato som termin
-    const today = new Date();
-    const futureDate = new Date(today);
-    futureDate.setMonth(futureDate.getMonth() + 1);
-    const formattedDate = futureDate.toISOString().split('T')[0];
-    document.getElementById('dueDate').value = formattedDate;
-    terminDato = futureDate;
+    //Oppgi dagens dato pluss en måned som termin
+    setInitialDueDate();
 
     //Lytt etter endringer i termindato og oppdater termindato ved endringer
     const terminDatoFelt = document.getElementById('dueDate');
     terminDatoFelt.addEventListener('input', function() {
-        const inputDate = terminDatoFelt.value;
-        const validDate = new Date(inputDate);
-        // Sjekk og oppdater termindato
-        if (!isNaN(validDate)) {
-            terminDato = validDate;
-            console.log('Termindato ble oppdatert til ' + terminDato.toISOString().split('T')[0]);
-        } else {
-            console.log('Ugyldig datoformat.');
-        }
+        oppdaterValgtTerminDato(terminDatoFelt.value)
     });
 
     // Lytt etter endringer til andel foreldrepenger og oppdater variabel ved endringer
@@ -80,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
     slider.addEventListener('input', function() {
         output.innerHTML = this.value;
     });
+
+    listenForFelleskvoteChanges() 
 });
 
 function getSelectedRettTilForeldrepenger() {
@@ -91,6 +80,27 @@ function getSelectedRettTilForeldrepenger() {
         return selectedValue
     } else {
         console.log('No radio button is selected.');
+    }
+}
+
+function setInitialDueDate() {
+    const today = new Date();
+    const futureDate = new Date(today);
+    futureDate.setMonth(futureDate.getMonth() + 1);
+    const formattedDate = futureDate.toISOString().split('T')[0];
+    document.getElementById('dueDate').value = formattedDate;
+    terminDato = futureDate;
+}
+
+function oppdaterValgtTerminDato(valgtTerminDato) {
+    const inputDate = valgtTerminDato
+    const validDate = new Date(inputDate);
+    // Sjekk og oppdater termindato
+    if (!isNaN(validDate)) {
+        terminDato = validDate;
+        console.log('Termindato ble oppdatert til ' + terminDato.toISOString().split('T')[0]);
+    } else {
+        console.log('Ugyldig datoformat.');
     }
 }
 
@@ -121,6 +131,26 @@ function handleAndelPengerChange(value) {
     console.log('Andel foreldrepenger ble oppdatert til ' + value);
     andelPenger = value;
     felleskvote.andelPenger(andelPenger);
+}
+
+// Listen for changes in Felleskvote properties and update the slider labels
+function listenForFelleskvoteChanges(value) {
+ // Define a setter for the kvoteVarighet property
+ Object.defineProperty(felleskvote, 'kvoteVarighet', {
+    get: function () {
+      return this._fellesKvoteVarighet;
+    },
+    set: function (value) {
+      this._fellesKvoteVarighet = value;
+      updateSliderLabels(); // Update the slider and labels when kvoteVarighet changes
+    },
+  });
+  }
+
+  // Function to update slider labels
+function updateSliderLabels() {
+    const fellesKvoteLabelSlutt = document.getElementById('sliderSlutt');
+    fellesKvoteLabelSlutt.innerHTML = felleskvote.kvoteVarighet;
 }
 
 
