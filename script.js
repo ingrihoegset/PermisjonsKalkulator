@@ -4,7 +4,9 @@ var antallBarn = 1;
 var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
+
 document.addEventListener('DOMContentLoaded', function () {
+
     const gaaVidereKnappDel1 = document.getElementById('gaaVidereDel1');
     const section2 = document.getElementById('section2');
     const gaaVidereKnappDel2 = document.getElementById('gaaVidereDel2');
@@ -20,14 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /*
     //Oppgi dagens dato som termin
     const today = new Date();
     const futureDate = new Date(today);
     futureDate.setMonth(futureDate.getMonth() + 1);
     const formattedDate = futureDate.toISOString().split('T')[0];
     document.getElementById('dueDate').value = formattedDate;
-    terminDato = futureDate;*/
+    terminDato = futureDate;
 
     //Lytt etter endringer i termindato og oppdater termindato ved endringer
     const terminDatoFelt = document.getElementById('dueDate');
