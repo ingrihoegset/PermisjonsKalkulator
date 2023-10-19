@@ -151,3 +151,5 @@ class Felleskvote {
         }
     }
 }
+
+export { Felleskvote };

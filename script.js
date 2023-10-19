@@ -1,3 +1,5 @@
+import { Felleskvote } from './felleskvote.js';
+
 var rettighetsKlasse = 1;
 var terminDato = new Date();
 var antallBarn = 1;
