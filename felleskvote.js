@@ -14,7 +14,7 @@ class Felleskvote {
     }
 
     // Setter for rettighetsklasse
-    set rettighetsKlasse(nyKlasse) {
+    setRettighetsKlasse(nyKlasse) {
         if (Number.isInteger(nyKlasse)) {
             this._rettighetsKlasse = nyKlasse;
             setFelleskvoteBetingelser();
@@ -25,7 +25,7 @@ class Felleskvote {
     }
 
     // Setter for rettighetsklasse
-    set andelPenger(oppgittAndel) {
+    setAndelPenger(oppgittAndel) {
         if (Number.isInteger(oppgittAndel)) {
             this._andelPenger = oppgittAndel;
             setFelleskvoteBetingelser();
@@ -36,17 +36,17 @@ class Felleskvote {
     }
 
     // Hent har felleskvote
-    get harFellesKvote() {
+    getHarFellesKvote() {
         return this._harFellesKvote;
     }
 
     // Hent kvotevarighet
-    get kvoteVarighet() {
+    getKvoteVarighet() {
         return this._fellesKvoteVarighet;
     }
 
     // Hent rettighetshaver
-    get rettighetshaver() {
+    getRettighetshaver() {
         return this._rettighetshaver;
     }
 

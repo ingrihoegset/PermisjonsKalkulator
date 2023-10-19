@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         antallBarn = 1
         console.log('Rettighetsklasse ' + rettighetsKlasse,'Termindato ' + terminDato,'Antall Barn ' + antallBarn)
         console.log('Neste knapp fra del 1 trykket'); 
+        console.log('Felleskvote varighet: ' + felleskvote._fellesKvoteVarighet + 'Rett på felleskvote? ' + felleskvote._harFellesKvote + 'Rettighetshaver ' + felleskvote._rettighetshaver)
         section2.style.display = "block";
     });
 
@@ -117,7 +118,7 @@ function handleRadioChange(radioButton) {
     rettighetsKlasse = value;
 
     // Update the Felleskvote instance based on the selected value
-    felleskvote.rettighetsKlasse(rettighetsKlasse);
+    felleskvote.setRettighetsKlasse(rettighetsKlasse);
 
     // Uncheck all other radio buttons with the same name
     radioButtons.forEach((otherRadioButton) => {
@@ -130,27 +131,23 @@ function handleRadioChange(radioButton) {
 function handleAndelPengerChange(value) {
     console.log('Andel foreldrepenger ble oppdatert til ' + value);
     andelPenger = value;
-    felleskvote.andelPenger(andelPenger);
+    felleskvote.setAndelPenger(andelPenger);
 }
 
 // Listen for changes in Felleskvote properties and update the slider labels
-function listenForFelleskvoteChanges(value) {
- // Define a setter for the kvoteVarighet property
- Object.defineProperty(felleskvote, 'kvoteVarighet', {
-    get: function () {
-      return this._fellesKvoteVarighet;
-    },
-    set: function (value) {
-      this._fellesKvoteVarighet = value;
-      updateSliderLabels(); // Update the slider and labels when kvoteVarighet changes
-    },
-  });
+function listenForFelleskvoteChanges() {
+    // Define a setter for the kvoteVarighet property
+    Object.defineProperty(felleskvote, 'kvoteVarighet', {
+        set: function (value) {
+        updateSliderLabels(); // Update the slider and labels when kvoteVarighet changes
+        },
+    });
   }
 
   // Function to update slider labels
 function updateSliderLabels() {
     const fellesKvoteLabelSlutt = document.getElementById('sliderSlutt');
-    fellesKvoteLabelSlutt.innerHTML = felleskvote.kvoteVarighet;
+    fellesKvoteLabelSlutt.innerHTML = felleskvote.getKvoteVarighet();
 }
 
 
