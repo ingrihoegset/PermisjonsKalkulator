@@ -113,7 +113,7 @@ function getDueDate(inputDate) {
 
 // Function to handle radio button changes
 function handleRadioChange(radioButton) {
-    const value = radioButton.value;
+    const value = parseInt(radioButton.value, 10);
     console.log("Rettighetsklasse " + value + " ble valgt av brukeren");
     rettighetsKlasse = value;
 
@@ -130,7 +130,7 @@ function handleRadioChange(radioButton) {
 
 function handleAndelPengerChange(value) {
     console.log('Andel foreldrepenger ble oppdatert til ' + value);
-    andelPenger = value;
+    andelPenger = parseInt(value, 10);
     felleskvote.setAndelPenger(andelPenger);
 }
 
