@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Listening for button selection after part 2
     gaaVidereKnappDel2.addEventListener('click', function () {
         console.log('Neste knapp fra del 2 trykket'); 
+        console.log('Felleskvote varighet: ' + felleskvote._fellesKvoteVarighet + 'Rett på felleskvote? ' + felleskvote._harFellesKvote + 'Rettighetshaver ' + felleskvote._rettighetshaver)
         section3.style.display = "block";
     });
 

@@ -17,7 +17,7 @@ class Felleskvote {
     setRettighetsKlasse(nyKlasse) {
         if (Number.isInteger(nyKlasse)) {
             this._rettighetsKlasse = nyKlasse;
-            setFelleskvoteBetingelser();
+            this.setFelleskvoteBetingelser();
             console.log('Rettighetsklasse for felleskvote oppdatert til ' + nyKlasse)
         } else {
             console.error('Invalid input for rettighetsklasse. Please provide an Integer.');
@@ -28,7 +28,7 @@ class Felleskvote {
     setAndelPenger(oppgittAndel) {
         if (Number.isInteger(oppgittAndel)) {
             this._andelPenger = oppgittAndel;
-            setFelleskvoteBetingelser();
+            this.setFelleskvoteBetingelser();
             console.log('Andel foreldrepenger for felleskvote oppdatert til ' + oppgittAndel)
         } else {
             console.error('Invalid input for andel foreldrepenger. Please provide an Integer.');
