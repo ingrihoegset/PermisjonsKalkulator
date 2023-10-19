@@ -64,14 +64,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Slider indicator
-    const slider = document.getElementById('felleskvoteUkerMor');
+    const slider = document.getElementById('felleskvoteUkerSlider');
     const output = document.getElementById('sliderValue');
     output.innerHTML = slider.value; // Display the default value
     slider.addEventListener('input', function() {
         output.innerHTML = this.value;
     });
-
-    listenForFelleskvoteChanges() 
 });
 
 function getSelectedRettTilForeldrepenger() {
@@ -134,24 +132,6 @@ function handleAndelPengerChange(value) {
     console.log('Andel foreldrepenger ble oppdatert til ' + value);
     andelPenger = parseInt(value, 10);
     felleskvote.setAndelPenger(andelPenger);
-}
-
-// Listen for changes in Felleskvote properties and update the slider labels
-function listenForFelleskvoteChanges() {
-    // Define a setter for the kvoteVarighet property
-    Object.defineProperty(felleskvote, 'kvoteVarighet', {
-        set: function (value) {
-        console.log('Observed a change in felleskvotevarighet. Den er nå: ' + felleskvote.getKvoteVarighet())
-        updateSliderLabels(); // Update the slider and labels when kvoteVarighet changes
-        },
-    });
-  }
-
-  // Function to update slider labels
-function updateSliderLabels() {
-    console.log('Updating slider label')
-    const fellesKvoteLabelSlutt = document.getElementById('sliderSlutt');
-    fellesKvoteLabelSlutt.innerHTML = felleskvote.getKvoteVarighet();
 }
 
 

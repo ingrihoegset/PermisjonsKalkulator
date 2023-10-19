@@ -149,6 +149,12 @@ class Felleskvote {
         else {
             console.error('Invalid input for foreldrepenger')
         }
+        const sliderSlutt = document.getElementById('sliderSlutt');
+        sliderSlutt.innerHTML = this._fellesKvoteVarighet;
+        const felleskvoteSlider = document.getElementById('felleskvoteUkerSlider');
+        felleskvoteSlider.max = this._fellesKvoteVarighet;
+        const felleskvoteTittel = document.getElementById('felleskvoteLabel');
+        felleskvoteTittel.textContent = 'Hvor mange uker av felleskvote skal gå til ' + this._rettighetshaver + '?';
     }
 }
 
