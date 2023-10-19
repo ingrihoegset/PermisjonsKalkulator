@@ -2,6 +2,7 @@ var rettighetsKlasse = 1;
 var terminDato = new Date()
 var antallBarn = 1;
 var andelPenger = 100;
+let felleskvote = new Felleskvote()
 
 document.addEventListener('DOMContentLoaded', function () {
     const gaaVidereKnappDel1 = document.getElementById('gaaVidereDel1');
@@ -15,15 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
     radioButtons.forEach((radioButton) => {
         radioButton.addEventListener('click', () => {
-            // Oppdater valgte rettigheter
-            rettighetsKlasse = radioButton.value
-            console.log("Rettighetsklasse " + rettighetsKlasse + " ble valgt av brukeren")
-            // Uncheck all other radio buttons with the same name
-            radioButtons.forEach((otherRadioButton) => {
-                if (otherRadioButton !== radioButton) {
-                    otherRadioButton.checked = false;
-                }
-            });
+            handleRadioChange(radioButton);
         });
     });
 
@@ -51,11 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Lytt etter endringer til andel foreldrepenger og oppdater variabel ved endringer
     const andelPengerFelt = document.getElementById('andelPengerValg');
-    andelPengerFelt.addEventListener('change', function() {
-        // Oppdater valgt andel
-        andelPenger =andelPengerFelt.value;
-        console.log('Andel foreldrepenger ble oppdatert til ' + andelPenger);
-    })
+    andelPengerFelt.addEventListener('input', function () {
+        handleAndelPengerChange(andelPengerFelt.value);
+    });
 
     //Listening for button selection after part 1
     gaaVidereKnappDel1.addEventListener('click', function () {
@@ -73,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         section3.style.display = "block";
     });
 
+    // Lytt etter click på 'kalkuler resultat' knappen
     calculateButton.addEventListener('click', function () {
         resultSection.classList.remove('hidden');
     });
@@ -102,6 +94,29 @@ function getDueDate(inputDate) {
     const dueDate = new Date(inputDate);
     dueDate.setDate(dueDate.getDate())
     return dueDate;
+}
+
+// Function to handle radio button changes
+function handleRadioChange(radioButton) {
+    const value = radioButton.value;
+    console.log("Rettighetsklasse " + value + " ble valgt av brukeren");
+    rettighetsKlasse = value;
+
+    // Update the Felleskvote instance based on the selected value
+    felleskvote.rettighetsKlasse(rettighetsKlasse);
+
+    // Uncheck all other radio buttons with the same name
+    radioButtons.forEach((otherRadioButton) => {
+        if (otherRadioButton !== radioButton) {
+            otherRadioButton.checked = false;
+        }
+    });
+}
+
+function handleAndelPengerChange(value) {
+    console.log('Andel foreldrepenger ble oppdatert til ' + value);
+    andelPenger = value;
+    felleskvote.andelPenger(andelPenger);
 }
 
 

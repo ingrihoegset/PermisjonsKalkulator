@@ -179,6 +179,29 @@ button:hover {
     cursor: pointer;
 }
 
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 5px;
+    position: relative;
+    width: 100%;
+}
+
+.slider-labels .slider-label {
+    text-align: center;
+    font-size: 12px;
+    width: 50%; /* Set each label to take up 50% of the available width */
+}
+
+.slider-labels .slider-label:first-child {
+    text-align: left; /* Align the first label to the left */
+}
+
+.slider-labels .slider-label:last-child {
+    text-align: right; /* Align the last label to the right */
+}
+
 /* Radio Container */
 .radio-container {
     text-align: left;
