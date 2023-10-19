@@ -38,10 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
     //Lytt etter endringer i termindato og oppdater termindato ved endringer
     const terminDatoFelt = document.getElementById('dueDate');
     terminDatoFelt.addEventListener('input', function() {
-        // Oppdater termindato
-        terminDato = terminDatoFelt.value;
-        console.log('Termindato ble oppdatert til ' + terminDato);
-    })
+        const inputDate = terminDatoFelt.value;
+        const validDate = new Date(inputDate);
+        // Sjekk og oppdater termindato
+        if (!isNaN(validDate)) {
+            terminDato = validDate;
+            console.log('Termindato ble oppdatert til ' + terminDato.toISOString().split('T')[0]);
+        } else {
+            console.log('Ugyldig datoformat.');
+        }
+    });
 
     // Lytt etter endringer til andel foreldrepenger og oppdater variabel ved endringer
     const andelPengerFelt = document.getElementById('andelPengerValg');
@@ -70,8 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
     calculateButton.addEventListener('click', function () {
         resultSection.classList.remove('hidden');
     });
-
-
 
     // Slider indicator
     const slider = document.getElementById('felleskvoteUkerMor');
