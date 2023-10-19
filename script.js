@@ -6,6 +6,8 @@ var antallBarn = 1;
 var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
+const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -17,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultSection = document.getElementById('result');
 
     // Add a click event listener to each radio button
-    const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
     radioButtons.forEach((radioButton) => {
         radioButton.addEventListener('click', () => {
             handleRadioChange(radioButton);
@@ -140,6 +141,7 @@ function listenForFelleskvoteChanges() {
     // Define a setter for the kvoteVarighet property
     Object.defineProperty(felleskvote, 'kvoteVarighet', {
         set: function (value) {
+        console.log('Observed a change in felleskvotevarighet. Den er nå: ' + felleskvote.getKvoteVarighet())
         updateSliderLabels(); // Update the slider and labels when kvoteVarighet changes
         },
     });
@@ -147,6 +149,7 @@ function listenForFelleskvoteChanges() {
 
   // Function to update slider labels
 function updateSliderLabels() {
+    console.log('Updating slider label')
     const fellesKvoteLabelSlutt = document.getElementById('sliderSlutt');
     fellesKvoteLabelSlutt.innerHTML = felleskvote.getKvoteVarighet();
 }
