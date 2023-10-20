@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Slider indicator
     const slider = document.getElementById('felleskvoteUkerSlider');
-    let output = document.getElementById('sliderValue');
+    const output = document.getElementById('sliderValue');
     output.innerHTML = slider.value; // Display the default value
     slider.addEventListener('input', function() {
         console.log('Heared change in slidervalue, slider value is ' + slider.value);
