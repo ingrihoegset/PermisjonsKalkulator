@@ -187,7 +187,7 @@ class Mor extends Foreldre {
         }
 
         // Beregn permisjon
-        beregnPermisjon()
+        this.beregnPermisjon()
     }
 
     beregnPermisjon() {
