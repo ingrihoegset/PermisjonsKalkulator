@@ -26,14 +26,6 @@ body {
     margin-top: 20px;
 }
 
-#section2 {
-    display: none;
-}
-
-#section3 {
-    display: none;
-}
-
 h1 {
     color: #6b9c6a;
     font-size: 2rem;
@@ -222,4 +214,19 @@ button:hover {
     font-weight: normal;
     font-size: 16px;
     font-family: "Arial", sans-serif;
+}
+
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#data-table th, #data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#data-table th {
+    background-color: #f2f2f2;
 }

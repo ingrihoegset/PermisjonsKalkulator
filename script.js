@@ -1,4 +1,5 @@
 import { Felleskvote } from './felleskvote.js';
+import { Foreldre, Mor } from './foreldre.js';
 
 var rettighetsKlasse = 1;
 var terminDato = new Date();
@@ -6,17 +7,22 @@ var antallBarn = 1;
 var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
+
+const today = new Date('2023-10-10');
+let mor1 = new Mor(today, 1, 1);
+let mor2 = new Mor(today, 1, 1);
+
+const resultatData = [mor1, mor2]; 
+
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
+
+
+const resultatTabellInnhold = document.querySelector("#data-table tbody");
 
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    const gaaVidereKnappDel1 = document.getElementById('gaaVidereDel1');
-    const section2 = document.getElementById('section2');
-    const gaaVidereKnappDel2 = document.getElementById('gaaVidereDel2');
-    const section3 = document.getElementById('section3');
     const calculateButton = document.getElementById('calculateButton');
-    const resultSection = document.getElementById('result');
 
     // Add a click event listener to each radio button
     radioButtons.forEach((radioButton) => {
@@ -40,27 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
         handleAndelPengerChange(andelPengerFelt.value);
     });
 
-    //Listening for button selection after part 1
-    gaaVidereKnappDel1.addEventListener('click', function () {
-        rettighetsKlasse = getSelectedRettTilForeldrepenger()
-        terminDato = getDueDate()
-        antallBarn = 1
-        console.log('Rettighetsklasse ' + rettighetsKlasse,'Termindato ' + terminDato,'Antall Barn ' + antallBarn)
-        console.log('Neste knapp fra del 1 trykket'); 
-        console.log('Felleskvote varighet: ' + felleskvote._fellesKvoteVarighet + 'Rett på felleskvote? ' + felleskvote._harFellesKvote + 'Rettighetshaver ' + felleskvote._rettighetshaver)
-        section2.style.display = "block";
-    });
-
-    //Listening for button selection after part 2
-    gaaVidereKnappDel2.addEventListener('click', function () {
-        console.log('Neste knapp fra del 2 trykket'); 
-        console.log('Felleskvote varighet: ' + felleskvote._fellesKvoteVarighet + 'Rett på felleskvote? ' + felleskvote._harFellesKvote + 'Rettighetshaver ' + felleskvote._rettighetshaver)
-        section3.style.display = "block";
-    });
-
     // Lytt etter click på 'kalkuler resultat' knappen
     calculateButton.addEventListener('click', function () {
-        resultSection.classList.remove('hidden');
+        populateTable();
     });
 
     // Slider indicator
@@ -71,18 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
         output.innerHTML = this.value;
     });
 });
-
-function getSelectedRettTilForeldrepenger() {
-    const selectedRadio = document.querySelector('input[type="radio"][name="radioOption"]:checked');
-    // Check if a radio button is selected
-    if (selectedRadio) {
-        const selectedValue = selectedRadio.value;
-        console.log('Selected Value: ' + selectedValue);
-        return selectedValue
-    } else {
-        console.log('No radio button is selected.');
-    }
-}
 
 function setInitialDueDate() {
     const today = new Date();
@@ -103,12 +79,6 @@ function oppdaterValgtTerminDato(valgtTerminDato) {
     } else {
         console.log('Ugyldig datoformat.');
     }
-}
-
-function getDueDate(inputDate) {
-    const dueDate = new Date(inputDate);
-    dueDate.setDate(dueDate.getDate())
-    return dueDate;
 }
 
 // Function to handle radio button changes
@@ -134,7 +104,20 @@ function handleAndelPengerChange(value) {
     felleskvote.setAndelPenger(andelPenger);
 }
 
+function populateTable() {
+    // Clear the existing table content before repopulating
+    resultatTabellInnhold.innerHTML = '';
 
+    resultatData.forEach((mor) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${mor.navn}</td>
+            <td>${mor.navn}</td>
+            <td>${mor.navn}</td>
+        `;
+        resultatTabellInnhold.appendChild(row);
+    });
+}
 
 
 

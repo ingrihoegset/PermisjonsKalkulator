@@ -107,6 +107,7 @@ class Felleskvote {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._harFellesKvote = true;
                 this._fellesKvoteVarighet = 18;
+                this._rettighetshaver = "mor";
                 console.log('Har felleskvote: ' + this._harFellesKvote + ' Varighet: ' + this._fellesKvoteVarighet + ' uker.'); 
             }
             // Rettighetsklasse 2
@@ -155,7 +156,26 @@ class Felleskvote {
         felleskvoteSlider.max = this._fellesKvoteVarighet;
         const felleskvoteTittel = document.getElementById('felleskvoteLabel');
         felleskvoteTittel.textContent = 'Hvor mange uker av felleskvote skal gå til ' + this._rettighetshaver + '?';
+        //Vurderer om slider skal skjules eller vises
+        this.skjulFelleskvoteSlider()
     }
+
+    // Vis / skjul fellekvote slider
+    skjulFelleskvoteSlider() {
+        const sliderSection = document.getElementById('sliderSection');
+        if (this._harFellesKvote === false) {
+            sliderSection.style.display = 'none';
+            sliderSection.style.visibility = 'hidden';
+        }
+        else {
+            sliderSection.style.display = 'block';
+            sliderSection.style.visibility = 'visible';
+        }
+
+    }
+
 }
+
+
 
 export { Felleskvote };

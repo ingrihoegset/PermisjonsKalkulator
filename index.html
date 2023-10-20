@@ -43,35 +43,25 @@
                     <option value="2">Tvillinger</option>
                     <option value="3">Trillinger eller flere</option>
                 </select>
-                <!-- Gå videre fra første del knapp -->
-                <div>
-                    <button type="button" class= "gaaVidereKnapp" id="gaaVidereDel1">Neste</button>
+                <!-- Question Leave Pay Percentage -->
+                <label for="andel-penger">Planlegger du 100 % eller 80 % foreldrepenger?</label>
+                <select id="andelPengerValg" required>
+                    <option value="100">100 %</option>
+                    <option value="80">80 %</option>
+                </select>
+                <!-- Question Foredeling av felleskvote -->
+                <div id="sliderSection">
+                    <label id="felleskvoteLabel" for="felleskvote-andel">Hvor mange uker av felleskvote skal gå til mor?</label>
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="16" value="0" class="slider" id="felleskvoteUkerSlider">
+                        <div class="slider-labels">
+                            <span class="slider-label" id="sliderStart">0</span>
+                            <span class="slider-label" id="sliderSlutt">16</span>
+                        </div>
+                    </div>
+                    <span id="sliderValue">8</span>
                 </div>
             </form>      
-        </div>
-        <div class="section" id="section2">
-            <!-- Question Leave Pay Percentage -->
-            <label for="andel-penger">Planlegger du 100 % eller 80 % foreldrepenger?</label>
-            <select id="andelPengerValg" required>
-                <option value="100">100 %</option>
-                <option value="80">80 %</option>
-            </select>
-            <!-- Gå videre fra andre del knapp -->
-            <div>
-                <button type="button" class= "gaaVidereKnapp" id="gaaVidereDel2">Neste</button>
-            </div>
-        </div>
-        <div class="section" id="section3">
-            <!-- Question Foredeling av felleskvote -->
-            <label id="felleskvoteLabel" for="felleskvote-andel">Hvor mange uker av felleskvote skal gå til mor?</label>
-            <div class="slidecontainer">
-                <input type="range" min="0" max="16" value="0" class="slider" id="felleskvoteUkerSlider">
-                <div class="slider-labels">
-                    <span class="slider-label" id="sliderStart">0</span>
-                    <span class="slider-label" id="sliderSlutt">16</span>
-                </div>
-            </div>
-            <span id="sliderValue">8</span>
         </div>
         <!-- Question Vacation 
         <form id="vacationForm">
@@ -124,8 +114,21 @@
             <p id="farsPermStartResult"></p>
             <p id="farsPermEndResult"></p>
         </div>
+        <div class="section" id="section2">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Startdato</th>
+                        <th>Sluttdato</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
     <script type="module" src="felleskvote.js"></script>
+    <script type="module" src="foreldre.js"></script>
     <script type="module" src="script.js"></script>
 </body>
 </html>

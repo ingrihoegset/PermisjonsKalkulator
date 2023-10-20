@@ -1,6 +1,8 @@
 class Foreldre {
 
     constructor(termin, antallBarn, rettighetsKlasse) {
+        super(termin, antallBarn, rettighetsKlasse)
+
         this._termin = termin;
         this._antallBarn = antallBarn;
         this._rettighetsKlasse = rettighetsKlasse;
@@ -52,21 +54,26 @@ class Foreldre {
 
 // Class Mor
 
-class Mor {
+class Mor extends Foreldre {
 
     constructor(termin, antallBarn, rettighetsKlasse) {
-        this._termin = termin;
-        this._antallBarn = antallBarn;
-        this._rettighetsKlasse = rettighetsKlasse;
+        super(termin, antallBarn, rettighetsKlasse)
+
         this._navn = "Mor"
-        this._andelPenger;
-        this._ukerFellesKvote; // Hvor mange uker er felleskvote
-        this._ukerMorKvote; // Hvor mange uker er mammakvoten
-        this._ukerForFodsel; // Uker perm før fødsel
+
+        /*
+        this._harRettigheter = true; // Om mor har rettigheter gitt inputene
+        this._andelPenger = 100;
+        this._ukerFellesKvote = 0; // Hvor mange uker er felleskvote
+        this._ukerMorKvote = 0; // Hvor mange uker er mammakvoten
+        this._ukerForFodsel = 0; // Uker perm før fødsel
+        this._startDatoPerm = new Date();
+        this._sluttDatoPerm = new Date();*/
     }
 
+    /*
     // Setter for andelPenger
-    set andelPenger(oppgittAndel) {
+    setAndelPenger(oppgittAndel) {
         if (Number.isInteger(oppgittAndel)) {
             this._andelPenger = oppgittAndel;
 
@@ -108,6 +115,31 @@ class Mor {
             console.error('Invalid input for rettighetsklasse. Please provide an Integer.');
         }
     }
-    
 
+    get startDatoPerm() {
+        return this._startDatoPerm;
+    }
+
+    set startDatoPerm(nyStartDato) {
+        this._startDatoPerm = nyStartDato;
+    }
+
+    get sluttDatoPerm() {
+        return this._sluttDatoPerm;
+    }
+
+    set sluttDatoPerm(nySluttDato) {
+        this._sluttDatoPerm = nySluttDato;
+    }*/
+
+    get navn() {
+        return this._navn;
+    }
+
+    set navn(nyttNavn) {
+        this._navn = nyttNavn;
+    }
 }
+
+
+export { Foreldre, Mor };
