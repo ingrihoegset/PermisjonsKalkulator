@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const output = document.getElementById('sliderValue');
     output.innerHTML = slider.value; // Display the default value
     slider.addEventListener('input', function() {
+        console.log('Heared change in slidervalue, slider value is ' + slider.value);
         const selectedSliderValue = parseInt(slider.value);
         output.innerHTML = selectedSliderValue;
         oppdaterAndelerAvFelleskvote(selectedSliderValue);
