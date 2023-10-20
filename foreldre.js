@@ -342,14 +342,14 @@ class FarMedmor extends Foreldre {
     }
 
     beregnPermisjon() {
-        console.log('Beregner permisjon med rettighetene: har rettigheter ' + this._harRettigheter + ' Uker etter fødsel til mor: ' + this._ukerMorKvote + ' Uker før fødsel til mor: ' + this._ukerForFodsel + ' Termin: ' + this._termin + ' Mors del av felleskvote: ' + this._ukerAvFellesKvote);
+        console.log('Beregner permisjon for far/medmor med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote' + this._ukerAvFellesKvote + ' Termin: ' + this._termin);
         // Set start of perm
         this._startDatoPerm = new Date(this._termin);
-        this._startDatoPerm.setDate(this._termin.getDate() - this._ukerForFodsel * 7);
+        this._startDatoPerm.setDate(this._termin.getDate());
 
         // Set end of perm
         this._sluttDatoPerm = new Date(this._termin);
-        this._sluttDatoPerm.setDate(this._termin.getDate() + this._ukerMorKvote * 7 + this._ukerAvFellesKvote * 7);
+        this._sluttDatoPerm.setDate(this._termin.getDate());
     }
 }
 

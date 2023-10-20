@@ -122,7 +122,8 @@ function handleAndelPengerChange(value) {
 
 function oppdaterAndelerAvFelleskvote(oppgittAndelAvKvote) {
     mor.setDelAvFellesKvote(oppgittAndelAvKvote);
-    farMedmor.setDelAvFellesKvote(oppgittAndelAvKvote);
+    const andelKvoteIgjenTilFarMedmor = felleskvote._fellesKvoteVarighet - oppgittAndelAvKvote;
+    farMedmor.setDelAvFellesKvote(andelKvoteIgjenTilFarMedmor);
 }
 
 //Populates resulttable with calculated results
