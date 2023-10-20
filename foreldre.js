@@ -72,13 +72,24 @@ class Mor extends Foreldre {
             this._andelPenger = oppgittAndel;
             this.oppdaterRettigheter(this._termin, this._antallBarn, this._rettighetsKlasse, this._andelPenger);
         } else {
+            console.error('Invalid input for andel foreldrepenger. Please provide an Integer.');
+        }
+    }
+
+    // Setter for rettighetsklasse
+    setRettighetsKlasse(nyKlasse) {
+        if (Number.isInteger(nyKlasse)) {
+            super.rettighetsKlasse = nyKlasse;
+            console.log('Rettighetsklasse for Mor oppdatert til ' + nyKlasse);
+            this.oppdaterRettigheter(this._termin, this._antallBarn, this._rettighetsKlasse, this._andelPenger);
+        } else {
             console.error('Invalid input for rettighetsklasse. Please provide an Integer.');
         }
     }
 
 
     oppdaterRettigheter(termin, antallBarn, rettighetsKlasse, andelPenger) {
-        console.log('Oppdaterer rettigheter');
+        console.log('Oppdaterer rettigheter for Mor med termin: ' + termin + ' Rettighetsklasse: ' + rettighetsKlasse + ' Andel penger: ' + andelPenger);
     }
 
 }

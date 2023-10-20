@@ -91,6 +91,12 @@ function handleRadioChange(radioButton) {
     // Update the Felleskvote instance based on the selected value
     felleskvote.setRettighetsKlasse(rettighetsKlasse);
 
+    // Oppdater valgt Rettighetsklasse i foreldre
+    mor._rettighetsKlasse = value;
+    // far/medmor
+    // far1
+    // far2
+
     // Uncheck all other radio buttons with the same name
     radioButtons.forEach((otherRadioButton) => {
         if (otherRadioButton !== radioButton) {
