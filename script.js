@@ -51,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const output = document.getElementById('sliderValue');
     output.innerHTML = slider.value; // Display the default value
     slider.addEventListener('input', function() {
-        output.innerHTML = this.value;
+        const selectedSliderValue = parseInt(slider.value);
+        output.innerHTML = selectedSliderValue;
+        oppdaterAndelerAvFelleskvote(selectedSliderValue);
     });
 });
 
@@ -114,6 +116,10 @@ function handleAndelPengerChange(value) {
     // far/medmor
     // far1
     // far2   
+}
+
+function oppdaterAndelerAvFelleskvote(oppgittAndelAvKvote) {
+    mor.setMorsDelAvFellesKvote(oppgittAndelAvKvote);
 }
 
 //Populates resulttable with calculated results

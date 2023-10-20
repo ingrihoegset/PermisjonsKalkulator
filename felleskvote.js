@@ -156,6 +156,13 @@ class Felleskvote {
         felleskvoteSlider.max = this._fellesKvoteVarighet;
         const felleskvoteTittel = document.getElementById('felleskvoteLabel');
         felleskvoteTittel.textContent = 'Hvor mange uker av felleskvote skal gå til ' + this._rettighetshaver + '?';
+        
+        //Pass på at valgt sliderverdi ikke er større en rangen
+        let sliderAndelValgt = document.getElementById('felleskvoteUkerSlider').value;
+        if (sliderAndelValgt > this._fellesKvoteVarighet) {
+            sliderAndelValgt = this._fellesKvoteVarighet;
+        }
+        
         //Vurderer om slider skal skjules eller vises
         this.skjulFelleskvoteSlider()
     }

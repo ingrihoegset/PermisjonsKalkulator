@@ -60,7 +60,7 @@ class Mor extends Foreldre {
         this._navn = "Mor"
         this._harRettigheter = true; // Om mor har rettigheter gitt inputene
         this._andelPenger = 100;
-        this._ukerFellesKvote = 0; // Hvor mange uker er felleskvote
+        this._ukerAvFellesKvote = 0; // Hvor mange uker er felleskvote
         this._ukerMorKvote = 0; // Hvor mange uker er mammakvoten
         this._ukerForFodsel = 0; // Uker perm før fødsel
         this._startDatoPerm;
@@ -190,17 +190,21 @@ class Mor extends Foreldre {
         this.beregnPermisjon()
     }
 
+    // Oppdater mors andel av felleskvote og oppdater permisjonsberegninger
+    setMorsDelAvFellesKvote(oppgittAndelAvKvote) {
+        this._ukerAvFellesKvote = oppgittAndelAvKvote
+        this.beregnPermisjon()
+    }
+
     beregnPermisjon() {
-        console.log('Beregner permisjon med rettighetene: har rettigheter ' + this._harRettigheter + ' Uker etter fødsel til mor: ' + this._ukerMorKvote + ' Uker før fødsel til mor: ' + this._ukerForFodsel + ' Termin: ' + this._termin + ' Mors del av felleskvote: ' + this._ukerFellesKvote);
+        console.log('Beregner permisjon med rettighetene: har rettigheter ' + this._harRettigheter + ' Uker etter fødsel til mor: ' + this._ukerMorKvote + ' Uker før fødsel til mor: ' + this._ukerForFodsel + ' Termin: ' + this._termin + ' Mors del av felleskvote: ' + this._ukerAvFellesKvote);
         // Set start of perm
         this._startDatoPerm = new Date(this._termin);
         this._startDatoPerm.setDate(this._termin.getDate() - this._ukerForFodsel * 7);
 
         // Set end of perm
         this._sluttDatoPerm = new Date(this._termin);
-        this._sluttDatoPerm.setDate(this._termin.getDate() + this._ukerMorKvote * 7 + this._ukerFellesKvote * 7)
-        
-    
+        this._sluttDatoPerm.setDate(this._termin.getDate() + this._ukerMorKvote * 7 + this._ukerAvFellesKvote * 7);
     }
 }
 
