@@ -1,5 +1,5 @@
 import { Felleskvote } from './felleskvote.js';
-import { Foreldre, Mor } from './foreldre.js';
+import { Foreldre, Mor, FarMedmor } from './foreldre.js';
 
 var rettighetsKlasse = 1;
 var terminDato = new Date();
@@ -8,8 +8,9 @@ var antallBarn = 1;
 var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
-let mor = new Mor(terminDato, 1, 1);
-const resultatData = [mor]; 
+let mor = new Mor(terminDato, antallBarn, 1);
+let farMedmor = new FarMedmor(terminDato, antallBarn, 1);
+const resultatData = [mor, farMedmor]; 
 
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
 const resultatTabellInnhold = document.querySelector("#data-table tbody");
@@ -75,7 +76,7 @@ function oppdaterValgtTerminDato(valgtTerminDato) {
         console.log('Termindato ble oppdatert til ' + terminDato.toISOString().split('T')[0]);
         // Oppdater termin i foreldre
         mor.setNyTermin(validDate);
-        // far/medmor
+        farMedmor.setNyTermin(validDate);
         // far1
         // far2
         console.log('Mors termindato ble oppdatert til ' + mor._termin.toISOString().split('T')[0]);
@@ -95,7 +96,7 @@ function handleRadioChange(radioButton) {
 
     // Oppdater valgt Rettighetsklasse i foreldre
     mor.setRettighetsKlasse(value);
-    // far/medmor
+    farMedmor.setRettighetsKlasse(value);
     // far1
     // far2
 
@@ -113,13 +114,14 @@ function handleAndelPengerChange(value) {
     felleskvote.setAndelPenger(andelPenger);
     // Oppdater andel foreldrepenger i foreldre
     mor.setAndelPenger(andelPenger);
-    // far/medmor
+    farMedmor.setAndelPenger(andelPenger);
     // far1
     // far2   
 }
 
 function oppdaterAndelerAvFelleskvote(oppgittAndelAvKvote) {
-    mor.setMorsDelAvFellesKvote(oppgittAndelAvKvote);
+    mor.setDelAvFellesKvote(oppgittAndelAvKvote);
+    farMedmor.setDelAvFellesKvote(oppgittAndelAvKvote);
 }
 
 //Populates resulttable with calculated results
@@ -127,12 +129,12 @@ function populateTable() {
     // Clear the existing table content before repopulating
     resultatTabellInnhold.innerHTML = '';
 
-    resultatData.forEach((mor) => {
+    resultatData.forEach((forelder) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${mor._navn || ''}</td>
-            <td>${mor._startDatoPerm ? mor._startDatoPerm.toISOString().split('T')[0] : ''}</td>
-            <td>${mor._sluttDatoPerm ? mor._sluttDatoPerm.toISOString().split('T')[0] : ''}</td>
+            <td>${forelder._navn || ''}</td>
+            <td>${forelder._startDatoPerm ? forelder._startDatoPerm.toISOString().split('T')[0] : ''}</td>
+            <td>${forelder._sluttDatoPerm ? forelder._sluttDatoPerm.toISOString().split('T')[0] : ''}</td>
         `;
         resultatTabellInnhold.appendChild(row);
     });

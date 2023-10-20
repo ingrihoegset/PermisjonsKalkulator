@@ -191,7 +191,152 @@ class Mor extends Foreldre {
     }
 
     // Oppdater mors andel av felleskvote og oppdater permisjonsberegninger
-    setMorsDelAvFellesKvote(oppgittAndelAvKvote) {
+    setDelAvFellesKvote(oppgittAndelAvKvote) {
+        this._ukerAvFellesKvote = oppgittAndelAvKvote
+        this.beregnPermisjon()
+    }
+
+    beregnPermisjon() {
+        console.log('Beregner permisjon med rettighetene: har rettigheter ' + this._harRettigheter + ' Uker etter fødsel til mor: ' + this._ukerMorKvote + ' Uker før fødsel til mor: ' + this._ukerForFodsel + ' Termin: ' + this._termin + ' Mors del av felleskvote: ' + this._ukerAvFellesKvote);
+        // Set start of perm
+        this._startDatoPerm = new Date(this._termin);
+        this._startDatoPerm.setDate(this._termin.getDate() - this._ukerForFodsel * 7);
+
+        // Set end of perm
+        this._sluttDatoPerm = new Date(this._termin);
+        this._sluttDatoPerm.setDate(this._termin.getDate() + this._ukerMorKvote * 7 + this._ukerAvFellesKvote * 7);
+    }
+}
+
+// Class Far/Medmor
+
+class FarMedmor extends Foreldre {
+
+    constructor(termin, antallBarn, rettighetsKlasse) {
+        super(termin, antallBarn, rettighetsKlasse)
+
+        this._navn = "Far/Medmor"
+        this._harRettigheter = true; // Om far/medmor har rettigheter gitt inputene
+        this._andelPenger = 100;
+        this._ukerAvFellesKvote = 8; // Hvor mange uker er felleskvote
+        this._ukerFarMedmorKvote = 15;
+        this._startDatoPerm;
+        this._sluttDatoPerm;
+    }
+
+    // Oppdater termin og oppdater rettigheter
+    setNyTermin(nyTermin) {
+        if (!isNaN(nyTermin)) {
+            this._termin = nyTermin;
+            console.log('Termindato for far/medmor ble oppdatert til ' + this._termin.toISOString().split('T')[0]);
+            this.oppdaterRettigheter();
+        } else {
+            console.log('Ugyldig datoformat for ny termin.');
+        }
+    }
+
+    // Oppdater andel foreldrepenger og oppdater rettigheter
+    setAndelPenger(oppgittAndel) {
+        if (Number.isInteger(oppgittAndel)) {
+            this._andelPenger = oppgittAndel;
+            this.oppdaterRettigheter();
+        } else {
+            console.error('Invalid input for andel foreldrepenger. Please provide an Integer.');
+        }
+    }
+
+    // Oppdater rettighetsklasse og oppdater rettigheter
+    setRettighetsKlasse(nyKlasse) {
+        if (Number.isInteger(nyKlasse)) {
+            this._rettighetsKlasse = nyKlasse;
+            console.log('Rettighetsklasse for Far/medmor oppdatert til ' + nyKlasse);
+            this.oppdaterRettigheter();
+        } else {
+            console.error('Invalid input for rettighetsklasse. Please provide an Integer.');
+        }
+    }
+
+    oppdaterRettigheter() {
+        console.log('Oppdaterer rettigheter for Far/Medmor med termin: ' + this._termin + ' Rettighetsklasse: ' + this._rettighetsKlasse + ' Andel penger: ' + this._andelPenger);
+
+        if (this._andelPenger === 100) {
+            console.log('foreldrepenger er ' + this._andelPenger + ' %'); 
+            // Rettighetsklasse 1
+            if(this._rettighetsKlasse === 1) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 15;
+                this._harRettigheter = true;
+            }
+            else if(this._rettighetsKlasse === 2) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 32;
+                this._harRettigheter = true;
+            }
+            else if(this._rettighetsKlasse === 3) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 4) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 5) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 46;
+                this._harRettigheter = true;
+            }
+            else {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 0;
+                this._harRettigheter = false;
+            }
+        }
+        else if (this._andelPenger === 80) {
+            console.log('foreldrepenger er ' + this._andelPenger + ' %'); 
+            // Rettighetsklasse 1
+            if(this._rettighetsKlasse === 1) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 19;
+                this._harRettigheter = true;
+            }
+            else if(this._rettighetsKlasse === 2) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 42;
+                this._harRettigheter = true;
+            }
+            else if(this._rettighetsKlasse === 3) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 4) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 5) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 56;
+                this._harRettigheter = true;
+            }
+            else {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFarMedmorKvote = 0;
+                this._harRettigheter = false;
+            }
+        }
+        else {
+            console.error('Invalid input for foreldrepenger')
+        }
+
+        // Beregn permisjon
+        this.beregnPermisjon()
+    }
+
+    // Oppdater mors andel av felleskvote og oppdater permisjonsberegninger
+    setDelAvFellesKvote(oppgittAndelAvKvote) {
         this._ukerAvFellesKvote = oppgittAndelAvKvote
         this.beregnPermisjon()
     }
@@ -209,4 +354,5 @@ class Mor extends Foreldre {
 }
 
 
-export { Foreldre, Mor };
+export { Foreldre, Mor, FarMedmor };
+
