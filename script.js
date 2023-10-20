@@ -72,7 +72,7 @@ function oppdaterValgtTerminDato(valgtTerminDato) {
         terminDato = validDate;
         console.log('Termindato ble oppdatert til ' + terminDato.toISOString().split('T')[0]);
         // Oppdater termin i foreldre
-        mor._termin = validDate;
+        mor.setNyTermin(validDate);
         // far/medmor
         // far1
         // far2
@@ -92,7 +92,7 @@ function handleRadioChange(radioButton) {
     felleskvote.setRettighetsKlasse(rettighetsKlasse);
 
     // Oppdater valgt Rettighetsklasse i foreldre
-    mor._rettighetsKlasse = value;
+    mor.setRettighetsKlasse(value);
     // far/medmor
     // far1
     // far2

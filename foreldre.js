@@ -67,6 +67,18 @@ class Mor extends Foreldre {
         this._sluttDatoPerm;
     }
 
+    // Oppdater termin og oppdater rettigheter
+    setNyTermin(nyTermin) {
+        if (!isNaN(nyTermin)) {
+            this._termin = nyTermin;
+            console.log('Termindato for mor ble oppdatert til ' + this._termin.toISOString().split('T')[0]);
+            this.oppdaterRettigheter(this._termin, this._antallBarn, this._rettighetsKlasse, this._andelPenger);
+        } else {
+            console.log('Ugyldig datoformat for ny termin.');
+        }
+    }
+
+    // Oppdater andel foreldrepenger og oppdater rettigheter
     setAndelPenger(oppgittAndel) {
         if (Number.isInteger(oppgittAndel)) {
             this._andelPenger = oppgittAndel;
@@ -76,10 +88,10 @@ class Mor extends Foreldre {
         }
     }
 
-    // Setter for rettighetsklasse
+    // Oppdater rettighetsklasse og oppdater rettigheter
     setRettighetsKlasse(nyKlasse) {
         if (Number.isInteger(nyKlasse)) {
-            super.rettighetsKlasse = nyKlasse;
+            this._rettighetsKlasse = nyKlasse;
             console.log('Rettighetsklasse for Mor oppdatert til ' + nyKlasse);
             this.oppdaterRettigheter(this._termin, this._antallBarn, this._rettighetsKlasse, this._andelPenger);
         } else {
