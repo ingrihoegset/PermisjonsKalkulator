@@ -3,20 +3,15 @@ import { Foreldre, Mor } from './foreldre.js';
 
 var rettighetsKlasse = 1;
 var terminDato = new Date();
+setInitialDueDate()
 var antallBarn = 1;
 var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
-
-const today = new Date('2023-10-10');
-let mor1 = new Mor(today, 1, 1);
-let mor2 = new Mor(today, 1, 1);
-
-const resultatData = [mor1, mor2]; 
+let mor = new Mor(terminDato, 1, 1);
+const resultatData = [mor]; 
 
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
-
-
 const resultatTabellInnhold = document.querySelector("#data-table tbody");
 
 
@@ -76,6 +71,12 @@ function oppdaterValgtTerminDato(valgtTerminDato) {
     if (!isNaN(validDate)) {
         terminDato = validDate;
         console.log('Termindato ble oppdatert til ' + terminDato.toISOString().split('T')[0]);
+        // Oppdater termin i foreldre
+        mor._termin = validDate;
+        // far/medmor
+        // far1
+        // far2
+        console.log('Mors termindato ble oppdatert til ' + mor._termin.toISOString().split('T')[0]);
     } else {
         console.log('Ugyldig datoformat.');
     }
@@ -102,8 +103,14 @@ function handleAndelPengerChange(value) {
     console.log('Andel foreldrepenger ble oppdatert til ' + value);
     andelPenger = parseInt(value, 10);
     felleskvote.setAndelPenger(andelPenger);
+    // Oppdater andel foreldrepenger i foreldre
+    mor.setAndelPenger(andelPenger);
+    // far/medmor
+    // far1
+    // far2   
 }
 
+//Populates resulttable with calculated results
 function populateTable() {
     // Clear the existing table content before repopulating
     resultatTabellInnhold.innerHTML = '';
@@ -111,9 +118,9 @@ function populateTable() {
     resultatData.forEach((mor) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${mor.navn}</td>
-            <td>${mor.navn}</td>
-            <td>${mor.navn}</td>
+            <td>${mor._navn || ''}</td>
+            <td>${mor._startDatoPerm ? mor._startDatoPerm.toISOString().split('T')[0] : ''}</td>
+            <td>${mor._sluttDatoPerm ? mor._sluttDatoPerm.toISOString().split('T')[0] : ''}</td>
         `;
         resultatTabellInnhold.appendChild(row);
     });
