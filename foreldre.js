@@ -60,7 +60,7 @@ class Mor extends Foreldre {
         this._navn = "Mor"
         this._harRettigheter = true; // Om mor har rettigheter gitt inputene
         this._andelPenger = 100;
-        this._ukerAvFellesKvote = 0; // Hvor mange uker er felleskvote
+        this._ukerAvFellesKvote = 8; // Hvor mange uker er felleskvote
         this._ukerMorKvote = 0; // Hvor mange uker er mammakvoten
         this._ukerForFodsel = 0; // Uker perm før fødsel
         this._startDatoPerm;
@@ -207,6 +207,7 @@ class Mor extends Foreldre {
         // Set end of perm
         this._sluttDatoPerm = new Date(this._termin);
         this._sluttDatoPerm.setDate(this._termin.getDate() + this._ukerMorKvote * 7 + this._ukerAvFellesKvote * 7);
+        console.log('Mors perm start: ' +this._startDatoPerm+ ' Mors perm slutt: ' +this._sluttDatoPerm);
     }
 }
 
@@ -348,7 +349,8 @@ class FarMedmor extends Foreldre {
 
     beregnPermisjon() {
         console.log('Beregner permisjon for far/medmor med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote' + this._ukerAvFellesKvote + 'Uker av kvote til Far/mormor ' + this._ukerFarMedmorKvote + ' Termin: ' + this._termin);
-        const morsPermSlutt = this.mor._sluttDatoPerm;
+        console.log('Mors perm slutt: ' +this._mor._morsPermSlutt);
+        const morsPermSlutt = this._mor._sluttDatoPerm;
         
         // Set start of perm
         this._startDatoPerm = new Date(morsPermSlutt);

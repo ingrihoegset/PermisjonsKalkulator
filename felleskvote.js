@@ -170,11 +170,13 @@ class Felleskvote {
     // Vis / skjul fellekvote slider
     skjulFelleskvoteSlider() {
         const sliderSection = document.getElementById('sliderSection');
+        const output = document.getElementById('sliderValue'); // The label beneath the slider
         let sliderValue = document.getElementById('felleskvoteUkerSlider').value;
         if (this._harFellesKvote === false) {
             sliderSection.style.display = 'none';
             sliderSection.style.visibility = 'hidden';
             sliderValue = 0;
+            output.innerHTML = 0;
         }
         else {
             sliderSection.style.display = 'block';
