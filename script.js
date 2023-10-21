@@ -29,8 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Oppgi dagens dato pluss en måned som termin
     setInitialDueDate();
-    mor.beregnPermisjon();
-    farMedmor.beregnPermisjon();
 
     //Lytt etter endringer i termindato og oppdater termindato ved endringer
     const terminDatoFelt = document.getElementById('dueDate');

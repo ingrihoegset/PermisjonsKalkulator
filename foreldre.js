@@ -65,6 +65,8 @@ class Mor extends Foreldre {
         this._ukerForFodsel = 0; // Uker perm før fødsel
         this._startDatoPerm;
         this._sluttDatoPerm;
+
+        this.oppdaterRettigheter();
     }
 
     // Oppdater termin og oppdater rettigheter
@@ -223,6 +225,8 @@ class FarMedmor extends Foreldre {
         this._ukerFarMedmorKvote = 15;
         this._startDatoPerm;
         this._sluttDatoPerm;
+
+        this.oppdaterRettigheter();
     }
 
     // Oppdater termin og oppdater rettigheter
