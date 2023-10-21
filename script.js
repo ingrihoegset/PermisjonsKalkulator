@@ -9,7 +9,7 @@ var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
 let mor = new Mor(terminDato, antallBarn, 1);
-let farMedmor = new FarMedmor(terminDato, antallBarn, 1);
+let farMedmor = new FarMedmor(terminDato, antallBarn, 1, mor);
 const resultatData = [mor, farMedmor]; 
 
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Oppgi dagens dato pluss en måned som termin
     setInitialDueDate();
+    mor.beregnPermisjon();
+    farMedmor.beregnPermisjon();
 
     //Lytt etter endringer i termindato og oppdater termindato ved endringer
     const terminDatoFelt = document.getElementById('dueDate');

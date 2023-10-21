@@ -212,10 +212,11 @@ class Mor extends Foreldre {
 
 class FarMedmor extends Foreldre {
 
-    constructor(termin, antallBarn, rettighetsKlasse) {
+    constructor(termin, antallBarn, rettighetsKlasse, mor) {
         super(termin, antallBarn, rettighetsKlasse)
 
         this._navn = "Far/Medmor"
+        this._mor = mor;
         this._harRettigheter = true; // Om far/medmor har rettigheter gitt inputene
         this._andelPenger = 100;
         this._ukerAvFellesKvote = 8; // Hvor mange uker er felleskvote
@@ -335,21 +336,23 @@ class FarMedmor extends Foreldre {
         this.beregnPermisjon()
     }
 
-    // Oppdater mors andel av felleskvote og oppdater permisjonsberegninger
+    // Oppdater fars andel av felleskvote og oppdater permisjonsberegninger
     setDelAvFellesKvote(oppgittAndelAvKvote) {
         this._ukerAvFellesKvote = oppgittAndelAvKvote
         this.beregnPermisjon()
     }
 
     beregnPermisjon() {
-        console.log('Beregner permisjon for far/medmor med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote' + this._ukerAvFellesKvote + ' Termin: ' + this._termin);
+        console.log('Beregner permisjon for far/medmor med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote' + this._ukerAvFellesKvote + 'Uker av kvote til Far/mormor ' + this._ukerFarMedmorKvote + ' Termin: ' + this._termin);
+        const morsPermSlutt = this.mor._sluttDatoPerm;
+        
         // Set start of perm
-        this._startDatoPerm = new Date(this._termin);
-        this._startDatoPerm.setDate(this._termin.getDate());
+        this._startDatoPerm = new Date(morsPermSlutt);
+        this._startDatoPerm.setDate(morsPermSlutt.getDate() + 1);
 
         // Set end of perm
-        this._sluttDatoPerm = new Date(this._termin);
-        this._sluttDatoPerm.setDate(this._termin.getDate());
+        this._sluttDatoPerm = new Date(this);
+        this._sluttDatoPerm.setDate(this._startDatoPerm.getDate() + this._ukerAvFellesKvote * 7 + this._ukerFarMedmorKvote * 7);
     }
 }
 
