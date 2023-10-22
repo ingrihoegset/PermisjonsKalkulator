@@ -9,6 +9,7 @@ var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
 let mor = new Mor(terminDato, antallBarn, 1);
+console.log('XXXXX Medmor slutt dato perm kontroll?: ' + mor._sluttDatoPerm);
 let farMedmor = new FarMedmor(terminDato, antallBarn, 1, mor);
 const resultatData = [mor, farMedmor]; 
 

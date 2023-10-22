@@ -60,7 +60,7 @@ class Mor extends Foreldre {
         this._navn = "Mor"
         this._harRettigheter = true; // Om mor har rettigheter gitt inputene
         this._andelPenger = 100;
-        this._ukerAvFellesKvote = 8; // Hvor mange uker er felleskvote
+        this._ukerAvFellesKvote = 0; // Hvor mange uker er felleskvote
         this._ukerMorKvote = 0; // Hvor mange uker er mammakvoten
         this._ukerForFodsel = 0; // Uker perm før fødsel
         this._startDatoPerm;
@@ -222,7 +222,7 @@ class FarMedmor extends Foreldre {
         this._mor = mor;
         this._harRettigheter = true; // Om far/medmor har rettigheter gitt inputene
         this._andelPenger = 100;
-        this._ukerAvFellesKvote = 8; // Hvor mange uker er felleskvote
+        this._ukerAvFellesKvote = 0; // Hvor mange uker er felleskvote
         this._ukerFarMedmorKvote = 15;
         this._startDatoPerm;
         this._sluttDatoPerm;
