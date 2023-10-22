@@ -133,6 +133,9 @@ function populateTable() {
     resultatTabellInnhold.innerHTML = '';
 
     resultatData.forEach((forelder) => {
+
+        console.log(forelder._navn + ' ' + forelder._startDatoPerm + ' ' + forelder._sluttDatoPerm)
+
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${forelder._navn || ''}</td>
