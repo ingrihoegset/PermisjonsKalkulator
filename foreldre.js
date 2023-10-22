@@ -363,6 +363,8 @@ class FarMedmor extends Foreldre {
         // Set end of perm
         this._sluttDatoPerm = new Date();
         this._sluttDatoPerm.setDate(this._startDatoPerm.getDate() + this._ukerAvFellesKvote * 7 + this._ukerFarMedmorKvote * 7);
+        console.log('Startdato perm far/medmor: ' + this._startDatoPerm);
+        console.log('Sluttdato perm far/medmor: ' + this._sluttDatoPerm);
         console.log('Startdato Perm Far/medmor: ' +this._startDatoPerm+ ' Uker av felleskvote til far/medmor: ' +this._ukerAvFellesKvote+ ' Uker kvote til far: ' +this._ukerFarMedmorKvote);
     }
 }
