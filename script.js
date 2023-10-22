@@ -123,7 +123,9 @@ function handleAndelPengerChange(value) {
 
 function oppdaterAndelerAvFelleskvote(oppgittAndelAvKvote) {
     mor.setDelAvFellesKvote(oppgittAndelAvKvote);
+    console.log('Valgt andel felleskvote til mor: ' + oppgittAndelAvKvote)
     const andelKvoteIgjenTilFarMedmor = felleskvote._fellesKvoteVarighet - oppgittAndelAvKvote;
+    console.log('Felleskvote max: '+felleskvote._fellesKvoteVarighet+ ' felleskvote til far/medmor: ' +andelKvoteIgjenTilFarMedmor);
     farMedmor.setDelAvFellesKvote(andelKvoteIgjenTilFarMedmor);
 }
 
