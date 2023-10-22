@@ -1,5 +1,5 @@
 body {
-    font-family: "Arial", sans-serif;
+    font-family: 'Montserrat';
     background-color: #ffffff;
     margin: 0;
     padding: 0;
@@ -9,6 +9,13 @@ body {
     min-height: 100vh;
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype'); /* Replace with the actual file name and format */
+    font-weight: normal;
+    font-style: normal;
+}
+
 svg {
     background-size: cover;
     width: 100%;
@@ -16,9 +23,9 @@ svg {
   }
 
 .svg-text {
-    font-family: Arial;
+    font-family: 'Libre Bodoni', serif;
     font-weight: bold;
-    font-size: 4px;
+    font-size: 6px;
     fill: #6b9c6a;
 }
 
@@ -102,7 +109,6 @@ button {
     background-color: #f85376;
     color: #fff;
     border: none;
-    
     width: 50%;
     cursor: pointer;
     margin-top: 20px;
@@ -232,7 +238,6 @@ button:hover {
     color: #4f4f4f;
     font-weight: normal;
     font-size: 16px;
-    font-family: "Arial", sans-serif;
 }
 
 #data-table {
@@ -248,3 +253,4 @@ button:hover {
 #data-table th {
     background-color: #e6e6e670;
 }
+
