@@ -61,8 +61,8 @@ class Mor extends Foreldre {
         this._harRettigheter = true; // Om mor har rettigheter gitt inputene
         this._andelPenger = 100;
         this._ukerAvFellesKvote = 0; // Hvor mange uker av felleskvote går til mor
-        this._ukerMorKvote = 0; // Hvor mange uker er mammakvoten
-        this._ukerForFodsel = 0; // Uker perm før fødsel
+        this._ukerMorKvote = 15; // Hvor mange uker er mammakvoten
+        this._ukerForFodsel = 3; // Uker perm før fødsel
         this._startDatoPerm;
         this._sluttDatoPerm;
 
@@ -353,16 +353,16 @@ class FarMedmor extends Foreldre {
     }
 
     beregnPermisjon() {
-        console.log('Beregner permisjon for far/medmor med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote' + this._ukerAvFellesKvote + 'Uker av kvote til Far/mormor ' + this._ukerFarMedmorKvote + ' Termin: ' + this._termin);
+        console.log('Beregner permisjon for far/medmor med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote ' + this._ukerAvFellesKvote + ' Uker av kvote til Far/mormor ' + this._ukerFarMedmorKvote + ' Termin: ' + this._termin);
         const morsPermSlutt = this._mor._sluttDatoPerm;
         
         // Set start of perm
         this._startDatoPerm = new Date(morsPermSlutt);
-        this._startDatoPerm.setDate(morsPermSlutt.getDate() + 1);
+        this._startDatoPerm.setDate(morsPermSlutt.getDate() + 1); 
 
         // Set end of perm
-        this._sluttDatoPerm = new Date();
-        this._sluttDatoPerm.setDate(this._startDatoPerm.getDate() + this._ukerAvFellesKvote * 7 + this._ukerFarMedmorKvote * 7);
+        this._sluttDatoPerm = new Date(this._startDatoPerm);
+        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + 1 + this._ukerAvFellesKvote * 7 + this._ukerFarMedmorKvote * 7);
         console.log('Startdato perm far/medmor: ' + this._startDatoPerm);
         console.log('Sluttdato perm far/medmor: ' + this._sluttDatoPerm);
         console.log('Startdato Perm Far/medmor: ' +this._startDatoPerm+ ' Uker av felleskvote til far/medmor: ' +this._ukerAvFellesKvote+ ' Uker kvote til far: ' +this._ukerFarMedmorKvote);
