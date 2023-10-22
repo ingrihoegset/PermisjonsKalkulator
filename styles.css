@@ -30,6 +30,11 @@ body {
 @media (max-width: 767px) {
     .container {
         width: 100%;
+        padding: 0px;
+    }
+
+    .section {
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0);
     }
 }
 
