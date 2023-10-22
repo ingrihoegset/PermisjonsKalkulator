@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    
     <svg viewbox="0 0 100 20">
         <path fill="#ecf5ec" opacity="0.5" d="M0 0 V0 Q70 35 130 2 V-0z" />
         <path fill="#ecf5ec" d="M0 -30 V18 Q30 19 55 15 T100 15 V-30z" />
@@ -66,7 +65,10 @@
                     </div>
                     <span id="sliderValue">8</span>
                 </div>
-            </form>      
+            </form>
+            <div>
+                <button type="button" id="calculateButton">Beregn permisjon</button>
+            </div>      
         </div>
         <!-- Question Vacation 
         <form id="vacationForm">
@@ -99,14 +101,11 @@
         </form>
         -->
         <!-- Calculate -->
-        <div>
-        <button type="button" id="calculateButton">Beregn permisjon</button>
-        </div>
         <div class="section" id="section2">
             <table id="data-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Hvem</th>
                         <th>Startdato</th>
                         <th>Sluttdato</th>
                     </tr>
@@ -115,6 +114,12 @@
             </table>
         </div>
     </div>
+    <svg viewbox="0 0 100 20">
+        <g transform="scale(1, -1) translate(0, -20)">
+            <path fill="#ecf5ec" opacity="0.5" d="M0 0 V0 Q70 35 130 2 V-0z" />
+            <path fill="#ecf5ec" d="M0 -30 V18 Q30 19 55 15 T100 15 V-30z" />
+        </g>
+    </svg>
     <script type="module" src="felleskvote.js"></script>
     <script type="module" src="foreldre.js"></script>
     <script type="module" src="script.js"></script>

@@ -99,11 +99,11 @@ select:hover,
 
 button {
     padding: 10px 20px;
-    background-color: #6b9c6a;
+    background-color: #f85376;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    width: 100%;
+    
+    width: 50%;
     cursor: pointer;
     margin-top: 20px;
     font-size: 16px;
@@ -111,7 +111,7 @@ button {
 }
 
 button:hover {
-    background-color: #497f54;
+    background-color: #d93357;
 }
 
 .gaaVidereKnapp {
@@ -241,7 +241,6 @@ button:hover {
 }
 
 #data-table th, #data-table td {
-    border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
