@@ -370,5 +370,311 @@ class FarMedmor extends Foreldre {
 }
 
 
-export { Foreldre, Mor, FarMedmor };
+// Class Far1
+
+class Far1 extends Foreldre {
+
+    constructor(termin, antallBarn, rettighetsKlasse, navn) {
+        super(termin, antallBarn, rettighetsKlasse)
+
+        this._navn = "Far1";
+        this._harRettigheter = false; // Om far1 har rettigheter gitt inputene
+        this._andelPenger = 100;
+        this._ukerAvFellesKvote = 0; // Hvor mange uker av felleskvote er til far
+        this._ukerFar1Kvote = 15;
+        this._startDatoPerm;
+        this._sluttDatoPerm;
+
+        this.oppdaterRettigheter();
+    }
+
+    // Oppdater termin og oppdater rettigheter
+    setNyTermin(nyTermin) {
+        if (!isNaN(nyTermin)) {
+            this._termin = nyTermin;
+            console.log('Termindato for Far1 ble oppdatert til ' + this._termin.toISOString().split('T')[0]);
+            this.oppdaterRettigheter();
+        } else {
+            console.log('Ugyldig datoformat for ny termin.');
+        }
+    }
+
+    // Oppdater andel foreldrepenger og oppdater rettigheter
+    setAndelPenger(oppgittAndel) {
+        if (Number.isInteger(oppgittAndel)) {
+            this._andelPenger = oppgittAndel;
+            this.oppdaterRettigheter();
+        } else {
+            console.error('Invalid input for andel foreldrepenger. Please provide an Integer.');
+        }
+    }
+
+    // Oppdater rettighetsklasse og oppdater rettigheter
+    setRettighetsKlasse(nyKlasse) {
+        if (Number.isInteger(nyKlasse)) {
+            this._rettighetsKlasse = nyKlasse;
+            console.log('Rettighetsklasse for Far1 oppdatert til ' + nyKlasse);
+            this.oppdaterRettigheter();
+        } else {
+            console.error('Invalid input for rettighetsklasse. Please provide an Integer.');
+        }
+    }
+
+    oppdaterRettigheter() {
+        console.log('Oppdaterer rettigheter for Far1 med termin: ' + this._termin + ' Rettighetsklasse: ' + this._rettighetsKlasse + ' Andel penger: ' + this._andelPenger);
+
+        if (this._andelPenger === 100) {
+            console.log('foreldrepenger er ' + this._andelPenger + ' %'); 
+            // Rettighetsklasse 1
+            if(this._rettighetsKlasse === 1) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 2) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 3) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 4) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 5) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 15;
+                this._harRettigheter = true;
+            }
+        }
+        else if (this._andelPenger === 80) {
+            console.log('foreldrepenger er ' + this._andelPenger + ' %'); 
+            // Rettighetsklasse 1
+            if(this._rettighetsKlasse === 1) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 2) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 3) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 4) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 5) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar1Kvote = 19;
+                this._harRettigheter = true;
+            }
+        }
+        else {
+            console.error('Invalid input for foreldrepenger')
+        }
+
+        // Beregn permisjon
+        this.beregnPermisjon()
+    }
+
+    // Oppdater fars andel av felleskvote og oppdater permisjonsberegninger
+    setDelAvFellesKvote(oppgittAndelAvKvote) {
+        this._ukerAvFellesKvote = oppgittAndelAvKvote
+        this.beregnPermisjon()
+    }
+
+    beregnPermisjon() {
+        console.log('Beregner permisjon for far1 med rettighetene: har rettigheter ' + this._harRettigheter + ' Fars/Medmors del av felleskvote ' + this._ukerAvFellesKvote + ' Uker av kvote til Far/mormor ' + this._ukerFar1Kvote + ' Termin: ' + this._termin);
+        
+        // Set start of perm
+        this._startDatoPerm = new Date(this._termin);
+        this._startDatoPerm.setDate(this._termin.getDate()); 
+
+        // Set end of perm
+        this._sluttDatoPerm = new Date(this._startDatoPerm);
+        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + this._ukerAvFellesKvote * 7 + this._ukerFar1Kvote * 7);
+        console.log('Startdato perm far1: ' + this._startDatoPerm);
+        console.log('Sluttdato perm far1: ' + this._sluttDatoPerm);
+        console.log('Startdato Perm far1: ' +this._startDatoPerm+ ' Uker av felleskvote til far1: ' +this._ukerAvFellesKvote+ ' Uker kvote til far1: ' +this._ukerFar1Kvote);
+    }
+}
+
+
+// Class Far2
+
+class Far2 extends Foreldre {
+
+    constructor(termin, antallBarn, rettighetsKlasse, far1) {
+        super(termin, antallBarn, rettighetsKlasse)
+
+        this._navn = "Far2";
+        this._far1 = far1;
+        this._harRettigheter = false; // Om far2 har rettigheter gitt inputene
+        this._andelPenger = 100;
+        this._ukerAvFellesKvote = 16; // Hvor mange uker av felleskvote er til far
+        this._ukerFar2Kvote = 15;
+        this._startDatoPerm;
+        this._sluttDatoPerm;
+
+        this.oppdaterRettigheter();
+    }
+
+    // Oppdater termin og oppdater rettigheter
+    setNyTermin(nyTermin) {
+        if (!isNaN(nyTermin)) {
+            this._termin = nyTermin;
+            console.log('Termindato for Far2 ble oppdatert til ' + this._termin.toISOString().split('T')[0]);
+            this.oppdaterRettigheter();
+        } else {
+            console.log('Ugyldig datoformat for ny termin.');
+        }
+    }
+
+    // Oppdater andel foreldrepenger og oppdater rettigheter
+    setAndelPenger(oppgittAndel) {
+        if (Number.isInteger(oppgittAndel)) {
+            this._andelPenger = oppgittAndel;
+            this.oppdaterRettigheter();
+        } else {
+            console.error('Invalid input for andel foreldrepenger. Please provide an Integer.');
+        }
+    }
+
+    // Oppdater rettighetsklasse og oppdater rettigheter
+    setRettighetsKlasse(nyKlasse) {
+        if (Number.isInteger(nyKlasse)) {
+            this._rettighetsKlasse = nyKlasse;
+            console.log('Rettighetsklasse for Far2 oppdatert til ' + nyKlasse);
+            this.oppdaterRettigheter();
+        } else {
+            console.error('Invalid input for rettighetsklasse. Please provide an Integer.');
+        }
+    }
+
+    oppdaterRettigheter() {
+        console.log('Oppdaterer rettigheter for Far2 med termin: ' + this._termin + ' Rettighetsklasse: ' + this._rettighetsKlasse + ' Andel penger: ' + this._andelPenger);
+
+        if (this._andelPenger === 100) {
+            console.log('foreldrepenger er ' + this._andelPenger + ' %'); 
+            // Rettighetsklasse 1
+            if(this._rettighetsKlasse === 1) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 2) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 3) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 4) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 5) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 15;
+                this._harRettigheter = true;
+            }
+        }
+        else if (this._andelPenger === 80) {
+            console.log('foreldrepenger er ' + this._andelPenger + ' %'); 
+            // Rettighetsklasse 1
+            if(this._rettighetsKlasse === 1) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 2) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 3) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 4) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else if(this._rettighetsKlasse === 5) {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 0;
+                this._harRettigheter = false;
+            }
+            else {
+                console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
+                this._ukerFar2Kvote = 19;
+                this._harRettigheter = true;
+            }
+        }
+        else {
+            console.error('Invalid input for foreldrepenger')
+        }
+
+        // Beregn permisjon
+        this.beregnPermisjon()
+    }
+
+    // Oppdater fars andel av felleskvote og oppdater permisjonsberegninger
+    setDelAvFellesKvote(oppgittAndelAvKvote) {
+        this._ukerAvFellesKvote = oppgittAndelAvKvote
+        this.beregnPermisjon()
+    }
+
+    beregnPermisjon() {
+        console.log('Beregner permisjon for far2 med rettighetene: har rettigheter ' + this._harRettigheter + ' Far2 del av felleskvote ' + this._ukerAvFellesKvote + ' Uker av kvote til Far2 ' + this._ukerFar2Kvote + ' Termin: ' + this._termin);
+        const far1PermSlutt = this._far1._sluttDatoPerm;
+        
+        // Set start of perm
+        this._startDatoPerm = new Date(far1PermSlutt);
+        this._startDatoPerm.setDate(far1PermSlutt.getDate() + 1); 
+
+        // Set end of perm
+        this._sluttDatoPerm = new Date(this._startDatoPerm);
+        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + 1 + this._ukerAvFellesKvote * 7 + this._ukerFar2Kvote * 7);
+        console.log('Startdato perm far2: ' + this._startDatoPerm);
+        console.log('Sluttdato perm far2: ' + this._sluttDatoPerm);
+        console.log('Startdato Perm far2: ' +this._startDatoPerm+ ' Uker av felleskvote til far/medmor: ' +this._ukerAvFellesKvote+ ' Uker kvote til far: ' +this._ukerFar2Kvote);
+    }
+}
+
+
+export { Foreldre, Mor, FarMedmor, Far1, Far2 };
 

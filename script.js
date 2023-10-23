@@ -1,5 +1,5 @@
 import { Felleskvote } from './felleskvote.js';
-import { Foreldre, Mor, FarMedmor } from './foreldre.js';
+import { Foreldre, Mor, FarMedmor, Far1, Far2 } from './foreldre.js';
 
 var rettighetsKlasse = 1;
 var terminDato = new Date();
@@ -9,9 +9,10 @@ var andelPenger = 100;
 let felleskvote = new Felleskvote();
 
 let mor = new Mor(terminDato, antallBarn, 1);
-console.log('XXXXX Medmor slutt dato perm kontroll?: ' + mor._sluttDatoPerm);
 let farMedmor = new FarMedmor(terminDato, antallBarn, 1, mor);
-const resultatData = [mor, farMedmor]; 
+let far1 = new Far1(terminDato, antallBarn, 1);
+let far2 = new Far2(terminDato, antallBarn, 1, far1);
+const resultatData = [mor, farMedmor, far1, far2]; 
 
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
 const resultatTabellInnhold = document.querySelector("#data-table tbody");
@@ -79,8 +80,8 @@ function oppdaterValgtTerminDato(valgtTerminDato) {
         // Oppdater termin i foreldre
         mor.setNyTermin(validDate);
         farMedmor.setNyTermin(validDate);
-        // far1
-        // far2
+        far1.setNyTermin(validDate);
+        far2.setNyTermin(validDate);
         console.log('Mors termindato ble oppdatert til ' + mor._termin.toISOString().split('T')[0]);
     } else {
         console.log('Ugyldig datoformat.');
@@ -99,8 +100,8 @@ function handleRadioChange(radioButton) {
     // Oppdater valgt Rettighetsklasse i foreldre
     mor.setRettighetsKlasse(value);
     farMedmor.setRettighetsKlasse(value);
-    // far1
-    // far2
+    far1.setRettighetsKlasse(value);
+    far2.setRettighetsKlasse(value);
 
     // Uncheck all other radio buttons with the same name
     radioButtons.forEach((otherRadioButton) => {
@@ -117,16 +118,19 @@ function handleAndelPengerChange(value) {
     // Oppdater andel foreldrepenger i foreldre
     mor.setAndelPenger(andelPenger);
     farMedmor.setAndelPenger(andelPenger);
-    // far1
-    // far2   
+    far1.setAndelPenger(andelPenger);
+    far2.setAndelPenger(andelPenger);
 }
 
 function oppdaterAndelerAvFelleskvote(oppgittAndelAvKvote) {
     mor.setDelAvFellesKvote(oppgittAndelAvKvote);
-    console.log('Valgt andel felleskvote til mor: ' + oppgittAndelAvKvote)
+    far1.setDelAvFellesKvote(oppgittAndelAvKvote);
+    console.log('Valgt andel felleskvote til mor/far1: ' + oppgittAndelAvKvote);
     const andelKvoteIgjenTilFarMedmor = felleskvote._fellesKvoteVarighet - oppgittAndelAvKvote;
-    console.log('Felleskvote max: '+felleskvote._fellesKvoteVarighet+ ' felleskvote til far/medmor: ' +andelKvoteIgjenTilFarMedmor);
+    console.log('Felleskvote max: '+felleskvote._fellesKvoteVarighet+ ' felleskvote til far/medmor / far2: ' +andelKvoteIgjenTilFarMedmor);
     farMedmor.setDelAvFellesKvote(andelKvoteIgjenTilFarMedmor);
+    far2.setDelAvFellesKvote(andelKvoteIgjenTilFarMedmor);
+
 }
 
 //Populates resulttable with calculated results
@@ -136,8 +140,8 @@ function populateTable() {
 
     resultatData.forEach((forelder) => {
 
-        if(forelder._harRettigheter = true) {
-            console.log(forelder._navn + ' ' + forelder._startDatoPerm + ' ' + forelder._sluttDatoPerm)
+        if(forelder._harRettigheter === true) {
+            console.log(forelder._navn + ' ' + forelder._startDatoPerm + ' ' + forelder._sluttDatoPerm + ' ' +forelder._harRettigheter);
 
             const row = document.createElement('tr');
             row.innerHTML = `
