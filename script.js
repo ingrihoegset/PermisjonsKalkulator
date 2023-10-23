@@ -136,15 +136,17 @@ function populateTable() {
 
     resultatData.forEach((forelder) => {
 
-        console.log(forelder._navn + ' ' + forelder._startDatoPerm + ' ' + forelder._sluttDatoPerm)
+        if(forelder._harRettigheter = true) {
+            console.log(forelder._navn + ' ' + forelder._startDatoPerm + ' ' + forelder._sluttDatoPerm)
 
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${forelder._navn || ''}</td>
-            <td>${forelder._startDatoPerm ? forelder._startDatoPerm.toISOString().split('T')[0] : ''}</td>
-            <td>${forelder._sluttDatoPerm ? forelder._sluttDatoPerm.toISOString().split('T')[0] : ''}</td>
-        `;
-        resultatTabellInnhold.appendChild(row);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${forelder._navn || ''}</td>
+                <td>${forelder._startDatoPerm ? forelder._startDatoPerm.toISOString().split('T')[0] : ''}</td>
+                <td>${forelder._sluttDatoPerm ? forelder._sluttDatoPerm.toISOString().split('T')[0] : ''}</td>
+            `;
+            resultatTabellInnhold.appendChild(row);
+        }
     });
 }
 
