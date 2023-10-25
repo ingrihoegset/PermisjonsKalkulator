@@ -68,13 +68,21 @@ h1 {
     margin-top: 40px;
 }
 
+
+.sliderValue {
+    font-size: 2rem;
+    padding: 10px;
+    background-color:#ecf5ec;
+    border-radius: 5px;
+}
+
 label {
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 5px;
     color: #4f4f4f;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 19px;
 }
 
 input[type="text"],
@@ -84,7 +92,7 @@ select {
     padding: 10px;
     border: 0px solid #e6e6e670;
     background-color: #e6e6e670;
-    border-radius: 0px;
+    border-radius: 5px;
     width: 100%;
     text-align: center;
     margin: 5px 0;
@@ -112,10 +120,11 @@ button {
     border: none;
     width: 40%;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 80px;
     font-size: 16px;
     height: 60px;
     transition: background-color 0.3s;
+    border-radius: 5px;
 }
 
 button:hover {
@@ -140,7 +149,6 @@ button:hover {
     padding: 5px;
     font-size: 16px;
     border: 1px solid #421411;
-    border-radius: 5px;
 }
 
 .slidecontainer {
@@ -159,6 +167,7 @@ button:hover {
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
+    border-radius: 5px;
 }
 
 /* Mouse-over effects */
@@ -174,6 +183,7 @@ button:hover {
     height: 45px;
     background: #6b9c6a;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .slider::-moz-range-thumb {
@@ -194,7 +204,7 @@ button:hover {
 
 .slider-labels .slider-label {
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
     width: 50%; /* Set each label to take up 50% of the available width */
 }
 
@@ -212,9 +222,9 @@ button:hover {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 0px;
     background-color:#e6e6e670;
     opacity: 0.75;
+    border-radius: 5px;
 }
 
 /* Radio Labels */
@@ -235,6 +245,7 @@ button:hover {
 #data-table th, #data-table td {
     padding: 8px;
     text-align: center;
+
 }
 
 #data-table th {
@@ -253,6 +264,7 @@ button:hover {
     margin-right: 10px;
     text-align: center;
     background-color: #e6e6e670;
+    border-radius: 5px;
 }
 
 .result2 {
@@ -260,6 +272,7 @@ button:hover {
     margin-left: 10px;
     text-align: center;
     background-color: #e6e6e670;
+    border-radius: 5px;
 }
 
 
