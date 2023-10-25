@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Lytt etter endringer i termindato og oppdater termindato ved endringer
     const terminDatoFelt = document.getElementById('dueDate');
     terminDatoFelt.addEventListener('input', function() {
-        oppdaterValgtTerminDato(terminDatoFelt.value)
+        oppdaterValgtTerminDato(terminDatoFelt.value);
     });
 
     // Lytt etter endringer til andel foreldrepenger og oppdater variabel ved endringer
@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Lytt etter click på 'kalkuler resultat' knappen
     calculateButton.addEventListener('click', function () {
         populateTable();
+        oppdaterBarneHageRett(terminDato);
+        oppdaterUkerPermGap(terminDato, resultatData);
     });
 
     // Slider indicator
@@ -130,7 +132,6 @@ function oppdaterAndelerAvFelleskvote(oppgittAndelAvKvote) {
     console.log('Felleskvote max: '+felleskvote._fellesKvoteVarighet+ ' felleskvote til far/medmor / far2: ' +andelKvoteIgjenTilFarMedmor);
     farMedmor.setDelAvFellesKvote(andelKvoteIgjenTilFarMedmor);
     far2.setDelAvFellesKvote(andelKvoteIgjenTilFarMedmor);
-
 }
 
 //Populates resulttable with calculated results
@@ -152,7 +153,106 @@ function populateTable() {
             resultatTabellInnhold.appendChild(row);
         }
     });
+
+
 }
 
+// Oppdaterer resultatvisningen for når man har rett på barnehageplass
+function oppdaterBarneHageRett(oppgittTermin) {
+    const inputDate = oppgittTermin;
+    const validDate = new Date(inputDate);
+    // Sjekk termindato
+    if (!isNaN(validDate)) {
+        const terminDato = validDate;
+        // Hent ut år og måned for termin
+        const year = terminDato.getFullYear(); // Get the year
+        const monthIndex = terminDato.getMonth(); // Get the month (zero-based index)
+        const monthNames = [
+            "Januar", "Februar", "Mars", "April",
+            "Mai", "Juni", "Juli", "August",
+            "September", "Oktober", "November", "Desember"];
+        const barnehageplass = document.getElementById('barnehageplass');
 
+        // Beregn rett på barnehage
+        if(monthIndex <=7) {
+            barnehageplass.textContent = monthNames[7] + " " + (year + 1);
+        } 
+        else if (monthIndex <=10) {
+            barnehageplass.textContent = monthNames[monthIndex] + " " + (year + 1);
+        }
+        else {
+            barnehageplass.textContent = monthNames[7] + " " + (year + 2);
+        }
+    }
+    else {
+        console.log("Didn't find a valid date to update barnehagerettigheter.")
+    }
+}
+
+function beregnBarneHagerettDato(oppgittTermin) {
+    const inputDate = oppgittTermin;
+    const validDate = new Date(inputDate);
+    // Sjekk termindato
+    if (!isNaN(validDate)) {
+        const terminDato = validDate;
+        // Hent ut år og måned for termin
+        const year = terminDato.getFullYear(); // Get the year
+        const monthIndex = terminDato.getMonth(); // Get the month (zero-based index)
+
+        // Beregn rett på barnehage
+        if(monthIndex <=7) {
+            const rettighetsDato = new Date((year + 1), 7, 1)
+            return rettighetsDato
+        } 
+        else if (monthIndex <=10) {
+            const rettighetsDato = new Date((year + 1), monthIndex, 1)
+            return rettighetsDato
+        }
+        else {
+            const rettighetsDato = new Date((year + 2), 7, 1)
+            return rettighetsDato
+        }
+    }
+}
+
+function oppdaterUkerPermGap(oppgittTermin, rettighetshavere) {
+    const rettighetsDato = beregnBarneHagerettDato(oppgittTermin);
+
+    let foreldreMedRettigheter = rettighetshavere.filter(forelder => forelder._harRettigheter);
+
+    if (foreldreMedRettigheter.length > 0) {
+        // Sort the filtered array by permslutt in descending order
+        foreldreMedRettigheter.sort((a, b) => b._sluttDatoPerm - a._sluttDatoPerm);
+        // The first element in the sorted array will have the latest permslutt date
+        const senestePermSlutt = foreldreMedRettigheter[0]._sluttDatoPerm;
+
+
+        // Calculate the time difference in milliseconds
+        const timeDifference = rettighetsDato - senestePermSlutt;
+
+        // Calculate the number of milliseconds in a week (7 days)
+        const millisecondsInWeek = 1000 * 60 * 60 * 24 * 7;
+
+        // Calculate the number of weeks, rounded up to the nearest whole number
+        const ukesGap = Math.ceil(timeDifference / millisecondsInWeek);
+
+        const ukesGapTittel = document.getElementById('ukesGapTittel');
+        const ukesGapVerdi = document.getElementById('ukerGap');
+        const resultatUkesGap = document.getElementById('result2');
+
+        if (ukesGap <=0) {
+            ukesGapTittel.innerHTML = "Permisjonen din strekker seg<br>forbi barnehagestart med";
+            ukesGapVerdi.textContent = -ukesGap + " uker";
+            resultatUkesGap.style.backgroundColor = '#6b9c6a70';
+        }
+        else {
+            ukesGapTittel.innerHTML = "Tid fra permisjonsslutt<br>til barnehagestart er";
+            ukesGapVerdi.textContent = ukesGap + " uker";
+            resultatUkesGap.style.backgroundColor = '#f8537670';
+        }
+        console.log('Latest permslutt date among foreldre with harrettigheter: ' + senestePermSlutt);
+    } else {
+        console.log('No foreldre with harrettigheter found.');
+    }
+}
 

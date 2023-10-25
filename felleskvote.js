@@ -175,6 +175,7 @@ class Felleskvote {
         if (this._harFellesKvote === false) {
             sliderSection.style.display = 'none';
             sliderSection.style.visibility = 'hidden';
+            console.log("Setting slider to 0")
             sliderValue = 0;
             output.innerHTML = 0;
         }
