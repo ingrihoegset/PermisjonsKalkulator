@@ -46,7 +46,7 @@ svg {
     background-color: #ffffff;
     border-radius: 0px;
     margin-top: 40px;
-    padding: 10px;
+    padding: 15px;
 }
 
 /* Media query for mobile devices (max-width: 767px) */
@@ -265,6 +265,7 @@ button:hover {
     text-align: center;
     background-color: #e6e6e670;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .result2 {
@@ -273,6 +274,7 @@ button:hover {
     text-align: center;
     background-color: #e6e6e670;
     border-radius: 5px;
+    padding: 5px;
 }
 
 
