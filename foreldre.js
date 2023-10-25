@@ -123,24 +123,28 @@ class Mor extends Foreldre {
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 5;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 3) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 46;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 4) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 46;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 5) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 0;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
@@ -163,30 +167,35 @@ class Mor extends Foreldre {
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 5;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 3) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 56;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 4) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 56;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 5) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 3;
                 this._ukerMorKvote = 0;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerForFodsel = 0;
                 this._ukerMorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
         }
         else {
@@ -208,11 +217,11 @@ class Mor extends Foreldre {
         console.log('Beregner permisjon med rettighetene: har rettigheter ' + this._harRettigheter + ' Uker etter fødsel til mor: ' + this._ukerMorKvote + ' Uker før fødsel til mor: ' + this._ukerForFodsel + ' Termin: ' + this._termin + ' Mors del av felleskvote: ' + this._ukerAvFellesKvote);
         // Set start of perm
         this._startDatoPerm = new Date(this._termin);
-        this._startDatoPerm.setDate(this._termin.getDate() - this._ukerForFodsel * 7);
+        this._startDatoPerm.setDate(this._termin.getDate() - (this._ukerForFodsel * 7));
 
         // Set end of perm
         this._sluttDatoPerm = new Date(this._termin);
-        this._sluttDatoPerm.setDate(this._termin.getDate() + this._ukerMorKvote * 7 + this._ukerAvFellesKvote * 7);
+        this._sluttDatoPerm.setDate(this._termin.getDate() + (this._ukerMorKvote * 7) - 1 +(this._ukerAvFellesKvote * 7) );
         console.log('Mors perm start: ' +this._startDatoPerm+ ' Mors perm slutt: ' +this._sluttDatoPerm);
     }
 }
@@ -283,26 +292,31 @@ class FarMedmor extends Foreldre {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 32;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 3) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 4) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 5) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 46;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
         }
         else if (this._andelPenger === 80) {
@@ -317,26 +331,31 @@ class FarMedmor extends Foreldre {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 42;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 3) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 4) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 5) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 56;
                 this._harRettigheter = true;
+                this._ukerAvFellesKvote = 0; 
             }
             else {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFarMedmorKvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
         }
         else {
@@ -364,7 +383,7 @@ class FarMedmor extends Foreldre {
 
         // Set end of perm
         this._sluttDatoPerm = new Date(this._startDatoPerm);
-        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + 1 + this._ukerAvFellesKvote * 7 + this._ukerFarMedmorKvote * 7);
+        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + this._ukerAvFellesKvote * 7 + (this._ukerFarMedmorKvote * 7) - 1);
         console.log('Startdato perm far/medmor: ' + this._startDatoPerm);
         console.log('Sluttdato perm far/medmor: ' + this._sluttDatoPerm);
         console.log('Startdato Perm Far/medmor: ' +this._startDatoPerm+ ' Uker av felleskvote til far/medmor: ' +this._ukerAvFellesKvote+ ' Uker kvote til far: ' +this._ukerFarMedmorKvote);
@@ -432,26 +451,31 @@ class Far1 extends Foreldre {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 2) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 3) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 4) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 5) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
@@ -466,26 +490,31 @@ class Far1 extends Foreldre {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 2) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 3) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 4) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else if(this._rettighetsKlasse === 5) {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
                 this._ukerFar1Kvote = 0;
                 this._harRettigheter = false;
+                this._ukerAvFellesKvote = 0; 
             }
             else {
                 console.log('Fant rettighetsklasse ' + this._rettighetsKlasse); 
@@ -517,10 +546,10 @@ class Far1 extends Foreldre {
 
         // Set end of perm
         this._sluttDatoPerm = new Date(this._startDatoPerm);
-        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + this._ukerAvFellesKvote * 7 + this._ukerFar1Kvote * 7);
+        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + (this._ukerAvFellesKvote * 7) + (this._ukerFar1Kvote * 7) - 1);
         console.log('Startdato perm far1: ' + this._startDatoPerm);
         console.log('Sluttdato perm far1: ' + this._sluttDatoPerm);
-        console.log('Startdato Perm far1: ' +this._startDatoPerm+ ' Uker av felleskvote til far1: ' +this._ukerAvFellesKvote+ ' Uker kvote til far1: ' +this._ukerFar1Kvote);
+        console.log('Startdato Perm far1: ' + this._startDatoPerm+ ' Uker av felleskvote til far1: ' +this._ukerAvFellesKvote+ ' Uker kvote til far1: ' +this._ukerFar1Kvote);
     }
 }
 
@@ -672,7 +701,7 @@ class Far2 extends Foreldre {
 
         // Set end of perm
         this._sluttDatoPerm = new Date(this._startDatoPerm);
-        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + 1 + this._ukerAvFellesKvote * 7 + this._ukerFar2Kvote * 7);
+        this._sluttDatoPerm.setDate(this._sluttDatoPerm.getDate() + (this._ukerAvFellesKvote * 7) + (this._ukerFar2Kvote * 7) - 1);
         console.log('Startdato perm far2: ' + this._startDatoPerm);
         console.log('Sluttdato perm far2: ' + this._sluttDatoPerm);
         console.log('Startdato Perm far2: ' +this._startDatoPerm+ ' Uker av felleskvote til far/medmor: ' +this._ukerAvFellesKvote+ ' Uker kvote til far: ' +this._ukerFar2Kvote);

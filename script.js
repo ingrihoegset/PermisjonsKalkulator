@@ -44,13 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
         handleAndelPengerChange(andelPengerFelt.value);
     });
 
-    // Lytt etter click på 'kalkuler resultat' knappen
-    calculateButton.addEventListener('click', function () {
-        populateTable();
-        oppdaterBarneHageRett(terminDato);
-        oppdaterUkerPermGap(terminDato, resultatData);
-    });
-
     // Slider indicator
     const slider = document.getElementById('felleskvoteUkerSlider');
     const output = document.getElementById('sliderValue');
@@ -61,6 +54,15 @@ document.addEventListener('DOMContentLoaded', function () {
         output.innerHTML = selectedSliderValue;
         oppdaterAndelerAvFelleskvote(selectedSliderValue);
     });
+
+    // Lytt etter click på 'kalkuler resultat' knappen
+    calculateButton.addEventListener('click', function () {
+        oppdaterAndelerAvFelleskvote(slider.value);
+        populateTable();
+        oppdaterBarneHageRett(terminDato);
+        oppdaterUkerPermGap(terminDato, resultatData);
+    });
+
 });
 
 function setInitialDueDate() {
