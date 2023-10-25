@@ -200,6 +200,7 @@ class Mor extends Foreldre {
     // Oppdater mors andel av felleskvote og oppdater permisjonsberegninger
     setDelAvFellesKvote(oppgittAndelAvKvote) {
         this._ukerAvFellesKvote = oppgittAndelAvKvote
+        console.log("Setter uker felleskvote for mor til" + oppgittAndelAvKvote);
         this.beregnPermisjon()
     }
 
@@ -349,6 +350,7 @@ class FarMedmor extends Foreldre {
     // Oppdater fars andel av felleskvote og oppdater permisjonsberegninger
     setDelAvFellesKvote(oppgittAndelAvKvote) {
         this._ukerAvFellesKvote = oppgittAndelAvKvote
+        console.log("Setter uker felleskvote for far til" + oppgittAndelAvKvote);
         this.beregnPermisjon()
     }
 
@@ -502,6 +504,7 @@ class Far1 extends Foreldre {
     // Oppdater fars andel av felleskvote og oppdater permisjonsberegninger
     setDelAvFellesKvote(oppgittAndelAvKvote) {
         this._ukerAvFellesKvote = oppgittAndelAvKvote
+        console.log("Setter uker felleskvote for far1 til" + oppgittAndelAvKvote);
         this.beregnPermisjon()
     }
 
@@ -655,6 +658,7 @@ class Far2 extends Foreldre {
     // Oppdater fars andel av felleskvote og oppdater permisjonsberegninger
     setDelAvFellesKvote(oppgittAndelAvKvote) {
         this._ukerAvFellesKvote = oppgittAndelAvKvote
+        console.log("Setter uker felleskvote for far2 til" + oppgittAndelAvKvote);
         this.beregnPermisjon()
     }
 
