@@ -17,10 +17,27 @@ const resultatData = [mor, farMedmor, far1, far2];
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
 const resultatTabellInnhold = document.querySelector("#data-table tbody");
 
+// Relatert til infoboksene ved inputtene
+const infoIcons = document.querySelectorAll('.info-icon');
+const tooltips = document.querySelectorAll('.info-tooltip');
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
     const calculateButton = document.getElementById('calculateButton');
+
+    // Iterate through each info icon
+    infoIcons.forEach((infoIcon, index) => {
+        // Show tooltip on hover
+        infoIcon.addEventListener('mouseenter', () => {
+            tooltips[index].style.display = 'block';
+        });
+
+        // Hide tooltip on mouseout
+        infoIcon.addEventListener('mouseleave', () => {
+            tooltips[index].style.display = 'none';
+        });
+    });
 
     // Add a click event listener to each radio button
     radioButtons.forEach((radioButton) => {
@@ -149,14 +166,20 @@ function populateTable() {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${forelder._navn || ''}</td>
-                <td>${forelder._startDatoPerm ? forelder._startDatoPerm.toISOString().split('T')[0] : ''}</td>
-                <td>${forelder._sluttDatoPerm ? forelder._sluttDatoPerm.toISOString().split('T')[0] : ''}</td>
+                <td>${forelder._startDatoPerm ? formatDate(forelder._startDatoPerm) : ''}</td>
+                <td>${forelder._sluttDatoPerm ? formatDate(forelder._sluttDatoPerm) : ''}</td>
             `;
             resultatTabellInnhold.appendChild(row);
         }
     });
+}
 
-
+// Function to format a Date object as DD.MM.YYYY
+function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
 }
 
 // Oppdaterer resultatvisningen for når man har rett på barnehageplass
@@ -257,4 +280,5 @@ function oppdaterUkerPermGap(oppgittTermin, rettighetshavere) {
         console.log('No foreldre with harrettigheter found.');
     }
 }
+
 
