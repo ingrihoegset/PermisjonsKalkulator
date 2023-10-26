@@ -99,26 +99,6 @@ label {
     font-size: 19px;
 }
 
-.info-icon {
-    margin-left: 5px;
-    cursor: pointer;
-    position: relative;
-}
-
-.info-tooltip {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 15px;
-    border-radius: 5px;
-    border: 2px solid #6b9c6a; /* Specify border style, color, and width */
-    font-size: 14px;
-    width: 250px;
-    font-family: "Montserrat";
-    z-index: 999;
-}
-
 input[type="text"],
 input[type="date"],
 input[type="number"],
@@ -136,6 +116,7 @@ select {
     box-sizing: border-box;
     vertical-align: middle;
     opacity: 0.75;
+    color: #4f4f4f;
 }
 
 /* Mouse-over effects */
@@ -354,8 +335,6 @@ select:hover,
     select {
         height:50px; /* Increase input height for better mobile tap targets */
         font-size:16px; /* Adjust font size for mobile readability */
-        text-align: center;
-        vertical-align: middle;
     }
 
     /* Adjust radio container styles for mobile */
