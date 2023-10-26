@@ -1,372 +1,70 @@
 body {
-    font-family: 'Montserrat';
-    background-color: #ffffff;
+    font-family: "Arial", sans-serif;
+    background-color: #f9d1e9;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Change to column layout */
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-@font-face {
-    font-family: 'Montserrat';
-    src: url('fonts/Montserrat-Regular.ttf') format('truetype'); /* Replace with the actual file name and format */
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Montserrat-Bold';
-    src: url('fonts/Montserrat-Bold.ttf') format('truetype'); /* Adjust the path to your font file */
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Spectral-Bold';
-    src: url('fonts/Spectral-Bold.ttf') format('truetype'); /* Adjust the path to your font file */
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'LibreBodoni-Bold';
-    src: url('fonts/LibreBodoni-Bold.ttf') format('truetype'); /* Adjust the path to your font file */
-    font-weight: bold;
-    font-style: normal;
-}
-
-svg {
-    background-size: cover;
-    width: 100%;
-    display: block;
-  }
-
-.svg-text {
-    font-family: 'LibreBodoni-Bold';
-    font-weight: bold;
-    font-size: 7px;
-    fill: #6b9c6a;
-}
-
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0px;
-    width: 60%;
-    text-align: center;
-    background-color: #fff; /* Add a background color to the container */
-    border-radius: 0px; /* Add some border-radius for the container */
-    margin-top: 0px;
-    margin-bottom: 80px;
-}
-
-.section {
-    background-color: #ffffff;
-    border-radius: 0px;
-    margin-top: 0px;
-    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
 }
 
 h1 {
-    color: #6b9c6a;
-    font-size: 2rem;
-    font-family: "LibreBodoni-Bold";
+    text-align: center;
+    color: #ff6f61;
 }
 
-h2 {
-    font-size: 1.3rem;
-    font-family: 'Montserrat;
-}
-
-
-.sliderValue {
-    font-size: 1.5rem;
-    padding: 10px;
-    color: #4f4f4f;
-    border-radius: 5px;
-    font-family: "Montserrat";
+.question {
+    margin-bottom: 15px;
 }
 
 label {
     display: block;
-    margin-top: 30px;
-    margin-bottom: 5px;
-    color: #4f4f4f;
     font-weight: bold;
-    font-size: 22px;
+    color: #7f7f7f;
 }
 
-input[type="text"],
 input[type="date"],
-input[type="number"],
-select {
-    padding: 10px;
-    border: 0px solid #e6e6e670;
-    background-color: #e6e6e670;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
+select,
+input[type="number"] {
     margin: 5px 0;
-    height: 40px;
-    font-size: 16px;
-    font-family: "Montserrat";
-    box-sizing: border-box;
-    vertical-align: middle;
-    opacity: 0.75;
-    color: #4f4f4f;
-}
-
-/* Mouse-over effects */
-input[type="text"]:hover,
-input[type="date"]:hover,
-input[type="number"]:hover,
-select:hover,
-.radio-container:hover {
-    opacity: 1;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.row-label {
-    flex: 0 0 80%;
-    text-align: left;
-    color: #4f4f4f;
-    font-size: 16px;
-    font-family: "Montserrat";
-}
-
-.row-input {
-    width: 50px;
-    padding: 5px;
-    font-size: 16px;
-    border: 1px solid #421411;
-    font-family: "Montserrat";
-}
-
-.slidecontainer {
-    width: 100%;
-}
-
-/* The slider itself */
-.slider {
-    -webkit-appearance: none;
-    margin-top: 5px;
-    appearance: none;
-    width: 100%;
-    height: 40px;
-    background: #e6e6e670;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-    border-radius: 5px;
-    font-family: "Montserrat";
-}
-
-/* Mouse-over effects */
-.slider:hover {
-    opacity: 1;
-}
-
-/* The slider handle */
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 40px;
-    background: #6b9c6a;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #6b9c6a;
-    cursor: pointer;
-}
-
-.slider-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    padding: 0 5px;
-    position: relative;
-    width: 100%;
-    font-family: "Montserrat";
-}
-
-.slider-labels .slider-label {
-    text-align: center;
-    font-size: 16px;
-    font-family: "Montserrat";
-    width: 50%; /* Set each label to take up 50% of the available width */
-}
-
-.slider-labels .slider-label:first-child {
-    text-align: left; /* Align the first label to the left */
-}
-
-.slider-labels .slider-label:last-child {
-    text-align: right; /* Align the last label to the right */
-}
-
-/* Radio Container */
-.radio-container {
-    text-align: left;
-    margin-top: 10px;
-    margin-bottom: 10px;
     padding: 10px;
-    background-color:#e6e6e670;
-    opacity: 0.75;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%;
 }
 
-/* Radio Labels */
-.radio-container label {
+input[type="radio"] {
+    margin: 5px 0;
+}
+
+button {
     display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: #4f4f4f;
-    font-weight: normal;
-    font-size: 16px;
-    font-family: "Montserrat";
-}
-
-.table-container {
-    border-radius: 5px; /* Add this line to round the corners of the container */
-    overflow: hidden; /* Ensure the table stays within the container */
-}
-
-#data-table {
     width: 100%;
-    border-collapse: collapse;
-}
-
-#data-table th, #data-table td {
-    padding: 8px;
-    text-align: center;
-    margin: 5px 0;
-    height: 40px;
-    background-color: #ecf5ec;
-}
-
-#data-table th {
-    margin: 5px 0;
-    height: 40px;
-    background-color: #6b9c6a;
-    color:#fff;
-    font-family: 'Montserrat';
-    font-size: 18px;
-}
-
-.key-results {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    margin: 20px 0;
-}
-
-.result1 {
-    flex: 1;
-    margin-right: 10px;
-    text-align: center;
-    background-color: #e6e6e670;
-    color: #4f4f4f;
+    padding: 10px;
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
     border-radius: 5px;
-    padding: 5px;
-    font-family: "Montserrat";
+    cursor: pointer;
 }
 
-.result2 {
-    flex: 1;
-    margin-left: 10px;
+button:hover {
+    background-color: #ff5244;
+}
+
+#result {
+    color: #ff6f61;
+    font-weight: bold;
     text-align: center;
-    color: #4f4f4f;
-    background-color: #e6e6e670;
-    border-radius: 5px;
-    padding: 5px;
+    margin-top: 10px;
 }
-
-
-
-
-/* Mobile Styles */
-/* These styles are applied to screens with a maximum width of 767px (typical mobile screens) */
-@media (max-width: 767px) {
-
-    /* Apply mobile-specific styles here */
-    .container {
-        width: 100%; /* Full width for mobile */
-        padding: 0px;
-    }
-
-    .section {
-        margin: 10px 0; /* Reduce margin for mobile */
-        padding: 10px; /* Maintain padding for mobile */
-    }
-
-    /* Adjust slider and input element styles for mobile */
-    .slider {
-        height: 50px; /* Reduce slider height for mobile */
-    }
-
-    /* The slider handle */
-    .slider::-webkit-slider-thumb {
-        height: 45px;
-    }
-
-    label {
-        padding-left: 30px;
-        padding-right: 30px;
-        font-size: 18px;
-    }
-
-    input[type="text"],
-    input[type="date"],
-    input[type="number"],
-    select {
-        height:50px; /* Increase input height for better mobile tap targets */
-        font-size:16px; /* Adjust font size for mobile readability */
-    }
-
-    /* Adjust radio container styles for mobile */
-    .radio-container {
-        padding: 5px; /* Reduce padding for mobile spacing */
-    }
-
-    /* Radio Labels */
-    .radio-container label {
-        font-size: 16px;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    /* Modify table styling for better mobile readability */
-    #data-table th, #data-table td {
-        padding: 5px; /* Reduce table cell padding for mobile spacing */
-    }
-
-    .key-results {
-        display: block; /* Change to block layout for mobile */
-        text-align: center; /* Center-align text for mobile */
-        margin: 10px 0; /* Adjust margin for mobile spacing */
-    }
-
-    .result1,
-    .result2 {
-        margin: 10px 0; /* Adjust margin for mobile spacing */
-        flex: none; /* Remove flex properties for mobile */
-        border-radius: 5px; /* Keep border-radius for mobile */
-        padding: 2px; /* Increase padding for better mobile spacing */
-    }
-}
-
-
