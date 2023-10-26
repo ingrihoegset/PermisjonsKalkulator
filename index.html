@@ -41,9 +41,7 @@
             </div>
             <form id="questionForm">
                 <!-- Question Due Date -->
-                <label for="due-date">Oppgi dato for termin<span class="info-icon" id="due-date-info">  ℹ️</span>
-                </label>
-                <label class="info-tooltip">Oppgi terminen som har blitt satt av jordmor eller lignende. Hvis du ikke kjenner terminen ennå kan du oppgi et anslag eller når du planlegger å få barn.</label>
+                <label for="due-date">Oppgi dato for termin</label>
                 <input type="date" id="dueDate" required>
                 <!-- Question Number of Children Expected -->
                 <label for="expected-children">Hvor mange barn venter du?</label>
@@ -68,10 +66,7 @@
                     </div>
                     <span class="sliderValue" id="sliderValue">8</span>
                 </div>
-            </form>
-            <div>
-                <button type="button" id="calculateButton">Beregn permisjon</button>
-            </div>      
+            </form> 
         </div>
         <!-- Question Vacation 
         <form id="vacationForm">
@@ -105,6 +100,19 @@
         -->
         <!-- Calculate -->
         <div class="section" id="section2">
+            <h1 id="dinPermisjon">Din permisjon</h1>
+            <div class="table-container">
+                <table id="data-table">
+                    <thead id="thead">
+                        <tr>
+                            <th>Hvem</th>
+                            <th>Startdato</th>
+                            <th>Sluttdato</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
             <div class="key-results">
                 <div class="result1">
                     <p>Rett på <br>barnehageplass fra</p>
@@ -115,16 +123,7 @@
                     <h2 id="ukerGap">X <span id="stat2">uker</span></h2>
                 </div>
             </div>
-            <table id="data-table">
-                <thead>
-                    <tr>
-                        <th>Hvem</th>
-                        <th>Startdato</th>
-                        <th>Sluttdato</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+
         </div>
     </div>
     <svg viewbox="0 0 100 20">

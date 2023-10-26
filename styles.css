@@ -16,6 +16,27 @@ body {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('fonts/Montserrat-Bold.ttf') format('truetype'); /* Adjust the path to your font file */
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Spectral-Bold';
+    src: url('fonts/Spectral-Bold.ttf') format('truetype'); /* Adjust the path to your font file */
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LibreBodoni-Bold';
+    src: url('fonts/LibreBodoni-Bold.ttf') format('truetype'); /* Adjust the path to your font file */
+    font-weight: bold;
+    font-style: normal;
+}
+
 svg {
     background-size: cover;
     width: 100%;
@@ -23,7 +44,7 @@ svg {
   }
 
 .svg-text {
-    font-family: 'Libre Bodoni', serif;
+    font-family: 'LibreBodoni-Bold';
     font-weight: bold;
     font-size: 7px;
     fill: #6b9c6a;
@@ -45,23 +66,28 @@ svg {
 .section {
     background-color: #ffffff;
     border-radius: 0px;
-    margin-top: 40px;
+    margin-top: 0px;
     padding: 15px;
 }
 
 h1 {
     color: #6b9c6a;
     font-size: 2rem;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    font-family: "LibreBodoni-Bold";
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-family: 'Montserrat;
 }
 
 
 .sliderValue {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 10px;
-    background-color:#ecf5ec;
+    color: #4f4f4f;
     border-radius: 5px;
+    font-family: "Montserrat";
 }
 
 label {
@@ -71,6 +97,26 @@ label {
     color: #4f4f4f;
     font-weight: bold;
     font-size: 19px;
+}
+
+.info-icon {
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.info-tooltip {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #6b9c6a; /* Specify border style, color, and width */
+    font-size: 14px;
+    width: 250px;
+    font-family: "Montserrat";
+    z-index: 999;
 }
 
 input[type="text"],
@@ -99,25 +145,6 @@ input[type="number"]:hover,
 select:hover,
 .radio-container:hover {
     opacity: 1;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #f85376;
-    color: #fff;
-    border: none;
-    width: 40%;
-    cursor: pointer;
-    margin-top: 80px;
-    font-size: 16px;
-    font-family: "Montserrat";
-    height: 60px;
-    transition: background-color 0.3s;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #c03956;
 }
 
 .row {
@@ -172,7 +199,7 @@ button:hover {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
-    height: 45px;
+    height: 40px;
     background: #6b9c6a;
     cursor: pointer;
     border-radius: 5px;
@@ -232,6 +259,11 @@ button:hover {
     font-family: "Montserrat";
 }
 
+.table-container {
+    border-radius: 5px; /* Add this line to round the corners of the container */
+    overflow: hidden; /* Ensure the table stays within the container */
+}
+
 #data-table {
     width: 100%;
     border-collapse: collapse;
@@ -240,17 +272,25 @@ button:hover {
 #data-table th, #data-table td {
     padding: 8px;
     text-align: center;
+    margin: 5px 0;
+    height: 40px;
+    background-color: #ecf5ec;
 }
 
 #data-table th {
-    background-color: #e6e6e670;
+    margin: 5px 0;
+    height: 40px;
+    background-color: #6b9c6a;
+    color:#fff;
+    font-family: 'Montserrat';
+    font-size: 18px;
 }
 
 .key-results {
     display: flex;
     justify-content: space-between;
     background-color: #ffffff;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .result1 {
@@ -258,6 +298,7 @@ button:hover {
     margin-right: 10px;
     text-align: center;
     background-color: #e6e6e670;
+    color: #4f4f4f;
     border-radius: 5px;
     padding: 5px;
     font-family: "Montserrat";
@@ -267,10 +308,10 @@ button:hover {
     flex: 1;
     margin-left: 10px;
     text-align: center;
+    color: #4f4f4f;
     background-color: #e6e6e670;
     border-radius: 5px;
     padding: 5px;
-    font-family: "Montserrat";
 }
 
 
@@ -296,14 +337,15 @@ button:hover {
         height: 50px; /* Reduce slider height for mobile */
     }
 
+    /* The slider handle */
+    .slider::-webkit-slider-thumb {
+        height: 45px;
+    }
+
     label {
-        margin-top: 30px;
-        margin-bottom: 5px;
-        padding-left: 20px;
-        padding-right: 20px;
-        color: #4f4f4f;
-        font-weight: bold;
-        font-size: 16px;
+        padding-left: 30px;
+        padding-right: 30px;
+        font-size: 18px;
     }
 
     input[type="text"],
@@ -312,6 +354,8 @@ button:hover {
     select {
         height:50px; /* Increase input height for better mobile tap targets */
         font-size:16px; /* Adjust font size for mobile readability */
+        text-align: center;
+        vertical-align: middle;
     }
 
     /* Adjust radio container styles for mobile */
@@ -324,11 +368,6 @@ button:hover {
         font-size: 16px;
         padding-left: 5px;
         padding-right: 5px;
-    }
-
-    button {
-        margin-top: 30px;
-        width: 80%;
     }
 
     /* Modify table styling for better mobile readability */
@@ -347,7 +386,7 @@ button:hover {
         margin: 10px 0; /* Adjust margin for mobile spacing */
         flex: none; /* Remove flex properties for mobile */
         border-radius: 5px; /* Keep border-radius for mobile */
-        padding: 10px; /* Increase padding for better mobile spacing */
+        padding: 2px; /* Increase padding for better mobile spacing */
     }
 }
 

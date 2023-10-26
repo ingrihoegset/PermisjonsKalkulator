@@ -1,13 +1,14 @@
 import { Felleskvote } from './felleskvote.js';
-import { Foreldre, Mor, FarMedmor, Far1, Far2 } from './foreldre.js';
+import { Mor, FarMedmor, Far1, Far2 } from './foreldre.js';
 
+// Defaultrettigheter og valg
 var rettighetsKlasse = 1;
 var terminDato = new Date();
 setInitialDueDate()
 var antallBarn = 1;
 var andelPenger = 100;
-let felleskvote = new Felleskvote();
 
+let felleskvote = new Felleskvote();
 let mor = new Mor(terminDato, antallBarn, 1);
 let farMedmor = new FarMedmor(terminDato, antallBarn, 1, mor);
 let far1 = new Far1(terminDato, antallBarn, 1);
@@ -17,32 +18,17 @@ const resultatData = [mor, farMedmor, far1, far2];
 const radioButtons = document.querySelectorAll('input[type="radio"][name="radioOption"]');
 const resultatTabellInnhold = document.querySelector("#data-table tbody");
 
-// Relatert til infoboksene ved inputtene
-const infoIcons = document.querySelectorAll('.info-icon');
-const tooltips = document.querySelectorAll('.info-tooltip');
-
+// Relatert til felleskvoteslider
+const slider = document.getElementById('felleskvoteUkerSlider');
+const output = document.getElementById('sliderValue');
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    const calculateButton = document.getElementById('calculateButton');
-
-    // Iterate through each info icon
-    infoIcons.forEach((infoIcon, index) => {
-        // Show tooltip on hover
-        infoIcon.addEventListener('mouseenter', () => {
-            tooltips[index].style.display = 'block';
-        });
-
-        // Hide tooltip on mouseout
-        infoIcon.addEventListener('mouseleave', () => {
-            tooltips[index].style.display = 'none';
-        });
-    });
 
     // Add a click event listener to each radio button
     radioButtons.forEach((radioButton) => {
         radioButton.addEventListener('click', () => {
             handleRadioChange(radioButton);
+            beregnResultater();
         });
     });
 
@@ -53,34 +39,36 @@ document.addEventListener('DOMContentLoaded', function () {
     const terminDatoFelt = document.getElementById('dueDate');
     terminDatoFelt.addEventListener('input', function() {
         oppdaterValgtTerminDato(terminDatoFelt.value);
+        beregnResultater();
     });
 
     // Lytt etter endringer til andel foreldrepenger og oppdater variabel ved endringer
     const andelPengerFelt = document.getElementById('andelPengerValg');
     andelPengerFelt.addEventListener('input', function () {
         handleAndelPengerChange(andelPengerFelt.value);
+        beregnResultater();
     });
 
     // Slider indicator
-    const slider = document.getElementById('felleskvoteUkerSlider');
-    const output = document.getElementById('sliderValue');
+
     output.innerHTML = slider.value; // Display the default value
     slider.addEventListener('input', function() {
         console.log('Heared change in slidervalue, slider value is ' + slider.value);
         const selectedSliderValue = parseInt(slider.value);
         output.innerHTML = selectedSliderValue;
-        oppdaterAndelerAvFelleskvote(selectedSliderValue);
+        beregnResultater();
     });
 
-    // Lytt etter click på 'kalkuler resultat' knappen
-    calculateButton.addEventListener('click', function () {
-        oppdaterAndelerAvFelleskvote(slider.value);
-        populateTable();
-        oppdaterBarneHageRett(terminDato);
-        oppdaterUkerPermGap(terminDato, resultatData);
-    });
-
+    //Beregne
+    beregnResultater();
 });
+
+function beregnResultater() {
+    oppdaterAndelerAvFelleskvote(slider.value);
+    populateTable();
+    oppdaterBarneHageRett(terminDato);
+    oppdaterUkerPermGap(terminDato, resultatData);
+}
 
 function setInitialDueDate() {
     const today = new Date();
