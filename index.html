@@ -2,134 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Permisjonskalkulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expectant Parent Questionnaire</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <svg class="viewbox" viewbox="0 0 100 20">
-        <path fill="#ecf5ec" opacity="0.5" d="M0 0 V0 Q70 35 130 2 V-0z" />
-        <path fill="#ecf5ec" d="M0 -30 V18 Q30 19 55 15 T100 15 V-30z" />
-        <text x="50" y="10" text-anchor="middle" class="svg-text">Permisjonskalkulator</text>
-    </svg>
     <div class="container">
-        <div class="section" id="section1">
-            <label for="parental-leave-rights">Hvem har rett til foreldrepenger?</label>
-            <div class="radio-container">
-                <label>
-                    <input type="radio" name="radioOption" value="1" checked> Både mor og far/medmor har rett til foreldrepenger
-                </label>
-                <label>
-                    <input type="radio" name="radioOption" value="2"> Bare far eller medmor har rett til foreldrepenger, men har ikke aleneomsorg
-                </label>
-                <label>
-                    <input type="radio" name="radioOption" value="3"> Bare mor har rett til foreldrepenger, men har ikke aleneomsorg
-                </label>
-                <label>
-                    <input type="radio" name="radioOption" value="4"> Mor har aleneomsorg og rett til foreldrepenger
-                </label>
-                <label>
-                    <input type="radio" name="radioOption" value="5"> Far eller medmor har aleneomsorg og rett til foreldrepenger
-                </label>
-                <label>
-                    <input type="radio" name="radioOption" value="6"> Både far og far har rett til foreldrepenger
-                </label>
+        <h1>Expectant Parent Questionnaire</h1>
+        <form id="questionnaire">
+            <div class="question">
+                <label for="due-date">Q1: When is your due date?</label>
+                <input type="date" id="due-date" required>
             </div>
-            <form id="questionForm">
-                <!-- Question Due Date -->
-                <label for="due-date">Oppgi dato for termin</label>
-                <input type="date" id="dueDate" required>
-                <!-- Question Number of Children Expected -->
-                <label for="expected-children">Hvor mange barn venter du?</label>
-                <select id="expectedChildren" required>
-                    <option value="1">Ett barn</option>
+            <div class="question">
+                <label for="twins-multiples">Q2: Are you expecting twins or multiples?</label>
+                <select id="twins-multiples" required>
+                    <option value="Single">Just one baby</option>
+                    <option value="Twins">Twins</option>
+                    <option value="Multiples">Multiples</option>
                 </select>
-                <!-- Question Leave Pay Percentage -->
-                <label for="andel-penger">Planlegger du 100 % eller 80 % foreldrepenger?</label>
-                <select id="andelPengerValg" required>
-                    <option value="100">100 %</option>
-                    <option value="80">80 %</option>
+            </div>
+            <div class="question">
+                <label for="parenting-situation">Q3: Who will be taking care of the child?</label>
+                <input type="radio" id="parenting-situation-mom" name="parenting-situation" value="Mom Only" required>
+                <label for="parenting-situation-mom">Mom Only</label>
+                <input type="radio" id="parenting-situation-dad" name="parenting-situation" value="Dad Involved" required>
+                <label for="parenting-situation-dad">Dad Involved</label>
+            </div>
+            <div class="question">
+                <label for="leave-pay">Q4: Select your desired leave and pay:</label>
+                <select id="leave-pay" required>
+                    <option value="80%">80% pay</option>
+                    <option value="100%">100% pay</option>
                 </select>
-                <!-- Question Foredeling av felleskvote -->
-                <div id="sliderSection">
-                    <label id="felleskvoteLabel" for="felleskvote-andel">Hvor mange uker av felleskvote skal gå til mor?</label>
-                    <div class="slidecontainer">
-                        <input type="range" min="0" max="16" value="0" class="slider" id="felleskvoteUkerSlider">
-                        <div class="slider-labels">
-                            <span class="slider-label" id="sliderStart">0</span>
-                            <span class="slider-label" id="sliderSlutt">16</span>
-                        </div>
-                    </div>
-                    <span class="sliderValue" id="sliderValue">8</span>
-                </div>
-            </form> 
-        </div>
-        <!-- Question Vacation 
-        <form id="vacationForm">
-
-            <label for="vactaion">Planlegger dere å ta ut noe ferie i løpet av permisjonen?</label>
-            <div class="row">
-                <span class="row-label">Oppgi antall uker ferie til mor alene:</span>
-                <input type="number" id="vacationMother" class="row-input" min="1" step="1">
             </div>
-            <div class="row">
-                <span class="row-label">Når starter mors ferie?:</span>
-                <input type="date" id="vacationMotherDate" class="row-input" min="1" step="1">
+            <div class="question">
+                <label for="mom-vacation">Q5: How many weeks of vacation does the mother want (0-5)?</label>
+                <input type="number" id="mom-vacation" min="0" max="5" required>
             </div>
-            <div class="row">
-                <span class="row-label">Oppgi antall uker ferie til far/medmor alene:</span>
-                <input type="number" id="vacationFather" class="row-input" min="1" step="1">
+            <div class="question" id="dad-vacation-question" style="display: none;">
+                <label for="dad-vacation">Q6: If dad is involved, how many weeks of vacation does the father want (0-5)?</label>
+                <input type="number" id="dad-vacation" min="0" max="5">
             </div>
-            <div class="row">
-                <span class="row-label">Når starter fars/medmors ferie?:</span>
-                <input type="date" id="vacationFatherDate" class="row-input" min="1" step="1">
+            <div class="question">
+                <label for="baby-shower-dates">Q7: Select multiple dates for your baby shower:</label>
+                <input type="date" id="baby-shower-date1" required>
+                <input type="date" id="baby-shower-date2" required>
+                <input type="date" id="baby-shower-date3" required>
             </div>
-            <div class="row">
-                <span class="row-label">Oppgi antall uker ferie dere skal ha sammen:</span>
-                <input type="number" id="vacationTogether" class="row-input" min="1" step="1">
-            </div>
-            <div class="row">
-                <span class="row-label">Når starter ferien dere skal ha sammen?:</span>
-                <input type="date" id="vacationTogetherDate" class="row-input" min="1" step="1">
-            </div>
+            <button type="submit">Submit</button>
+            <div id="result" style="display: none;"></div>
         </form>
-        -->
-        <!-- Calculate -->
-        <div class="section" id="section2">
-            <h1 id="dinPermisjon">Din permisjon</h1>
-            <div class="table-container">
-                <table id="data-table">
-                    <thead id="thead">
-                        <tr>
-                            <th>Hvem</th>
-                            <th>Startdato</th>
-                            <th>Sluttdato</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <div class="key-results">
-                <div class="result1">
-                    <p>Rett på <br>barnehageplass fra</p>
-                    <h2 id="barnehageplass">MM.ÅÅÅÅ</h2>
-                </div>
-                <div class="result2" id="result2">
-                    <p id="ukesGapTittel">Uker mellom permisjonsslutt <br>og barnehageplass</p>
-                    <h2 id="ukerGap">X <span id="stat2">uker</span></h2>
-                </div>
-            </div>
-
-        </div>
     </div>
-    <svg viewbox="0 0 100 20">
-        <g transform="scale(1, -1) translate(0, -20)">
-            <path fill="#ecf5ec" opacity="0.5" d="M0 0 V0 Q70 35 130 2 V-0z" />
-            <path fill="#ecf5ec" d="M0 -30 V18 Q30 19 55 15 T100 15 V-30z" />
-        </g>
-    </svg>
-    <script type="module" src="felleskvote.js"></script>
-    <script type="module" src="foreldre.js"></script>
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
